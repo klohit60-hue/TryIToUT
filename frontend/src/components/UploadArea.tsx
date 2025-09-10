@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { UploadCloud, Image as ImageIcon } from 'lucide-react'
 
 export default function UploadArea({
