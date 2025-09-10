@@ -11,6 +11,7 @@ from rembg import remove, new_session
 import base64
 import numpy as np
 import cv2
+import os
 
 from .schemas import TryOnResponse
 from .gemini import generate_tryon_image
@@ -20,8 +21,16 @@ app = FastAPI(title="Virtual Try-On API")
 # Load env vars from .env when running locally
 load_dotenv()
 
-# Create a lightweight background removal session and warm it up on startup
-_rembg_session = new_session("u2net")  # higher quality model for better cutouts
+# Configurable model and image size (override via env)
+_rembg_model_name = os.getenv("REMBG_MODEL", "u2net")
+_max_dim_str = os.getenv("MAX_DIM", "1536")
+try:
+    _max_dim = max(256, min(4096, int(_max_dim_str)))
+except Exception:
+    _max_dim = 1536
+
+# Create background removal session and warm it up on startup
+_rembg_session = new_session(_rembg_model_name)
 
 @app.on_event("startup")
 async def _warmup_model() -> None:
@@ -136,7 +145,7 @@ async def tryon(
     # Background removal on user image
     try:
         user_img = Image.open(io.BytesIO(user_bytes)).convert("RGBA")
-        user_img = _downscale_max_dim(user_img, 1536)
+        user_img = _downscale_max_dim(user_img, _max_dim)
     except Exception:
         return JSONResponse(status_code=400, content={"detail": "Invalid user image"})
 
@@ -154,7 +163,7 @@ async def tryon(
     # Ensure clothing is PNG bytes
     try:
         cloth_img = Image.open(io.BytesIO(clothing_bytes)).convert("RGBA")
-        cloth_img = _downscale_max_dim(cloth_img, 1536)
+        cloth_img = _downscale_max_dim(cloth_img, _max_dim)
         out_cloth = io.BytesIO()
         cloth_img.save(out_cloth, format="PNG")
         clothing_png = out_cloth.getvalue()

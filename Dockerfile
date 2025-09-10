@@ -30,6 +30,7 @@ RUN pip install --upgrade pip && pip install \
     pillow==10.3.0 \
     rembg==2.0.57 \
     requests==2.32.3 \
+    python-multipart==0.0.9 \
     python-dotenv==1.0.1 \
     numpy==1.26.4 \
     opencv-python-headless==4.9.0.80 \
@@ -42,7 +43,9 @@ COPY backend/ /app/
 RUN mkdir -p /app/static
 COPY --from=frontend /frontend/dist/ /app/static/
 
-ENV PORT=8080
+ENV PORT=8080 \
+    REMBG_MODEL=u2netp \
+    MAX_DIM=1024
 EXPOSE 8080
 
 # Heroku sets $PORT; default to 8080 for local Docker run
