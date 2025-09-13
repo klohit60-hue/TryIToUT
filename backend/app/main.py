@@ -132,7 +132,8 @@ async def tryon(
     user_image: UploadFile = File(...),
     clothing_image: UploadFile = File(...),
     background: Literal[
-        "Plain White", "Library", "Party", "Beach", "Office"
+        "Plain White", "Library", "Party", "Beach", "Office",
+        "Street", "Bedroom", "Living Room", "Cafe", "Park", "Studio Gray"
     ] = Form(...),
 ):
     # Read files

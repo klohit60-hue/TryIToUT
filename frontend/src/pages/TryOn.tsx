@@ -9,6 +9,12 @@ const BACKGROUNDS = [
   'Party',
   'Beach',
   'Office',
+  'Street',
+  'Bedroom',
+  'Living Room',
+  'Cafe',
+  'Park',
+  'Studio Gray',
 ] as const
 
 type BackgroundChoice = typeof BACKGROUNDS[number]
