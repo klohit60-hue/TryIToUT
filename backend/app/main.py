@@ -4,7 +4,7 @@ from typing import Literal, Optional, Tuple
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from dotenv import load_dotenv
 from PIL import Image
 from rembg import remove, new_session
@@ -119,9 +119,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Serve React build if present (Docker/Heroku image copies to /app/static)
+# Serve React build under /static to avoid intercepting API routes
 try:
-    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+    app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 except Exception:
     pass
 
@@ -188,4 +188,20 @@ async def tryon(
 
     return {"image_base64": img_b64}
 
+
+# SPA fallback routes (GET only). These are declared AFTER API routes so they don't shadow them.
+@app.get("/", include_in_schema=False)
+def spa_index():
+    try:
+        return FileResponse("static/index.html")
+    except Exception:
+        return {"message": "Frontend not built"}
+
+
+@app.get("/{full_path:path}", include_in_schema=False)
+def spa_catch_all(full_path: str):
+    try:
+        return FileResponse("static/index.html")
+    except Exception:
+        return {"message": "Frontend not built"}
 
