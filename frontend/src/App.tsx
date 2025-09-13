@@ -3,6 +3,8 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Landing from './pages/Landing'
 import TryOn from './pages/TryOn'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/app" element={<TryOn />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </main>
       <Footer />

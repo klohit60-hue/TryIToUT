@@ -17,7 +17,9 @@ export default function Navbar() {
           </NavLink>
           <button className="inline-flex items-center gap-1.5 text-gray-600 hover:text-gray-900"><Info className="h-4 w-4"/> About</button>
           <button className="inline-flex items-center gap-1.5 text-gray-600 hover:text-gray-900"><HelpCircle className="h-4 w-4"/> Help</button>
-          <button className="inline-flex items-center gap-1.5 text-gray-600 hover:text-gray-900"><User className="h-4 w-4"/> Profile</button>
+          <NavLink to="/signin" className={({ isActive }) => isActive ? 'text-gray-900 inline-flex items-center gap-1.5' : 'text-gray-600 hover:text-gray-900 inline-flex items-center gap-1.5'}>
+            <User className="h-4 w-4"/> Sign in
+          </NavLink>
         </nav>
       </div>
       <div className="h-0.5 w-full bg-gradient-to-r from-fuchsia-500 via-rose-500 to-cyan-500" />

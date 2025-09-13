@@ -13,6 +13,14 @@ const BACKGROUNDS = [
 
 type BackgroundChoice = typeof BACKGROUNDS[number]
 
+// API base: use Vite env if provided; otherwise localhost for local dev,
+// and Heroku URL for non-local environments
+const API_BASE =
+  (import.meta as any).env?.VITE_API_BASE ||
+  (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:8000'
+    : 'https://tryitout-ai-06b6f1-1e7dca7aa188.herokuapp.com')
+
 export default function TryOn() {
   const [userFile, setUserFile] = useState<File | null>(null)
   const [clothFile, setClothFile] = useState<File | null>(null)
@@ -40,7 +48,7 @@ export default function TryOn() {
       form.append('clothing_image', clothFile)
       form.append('background', background)
 
-      const res = await fetch('http://localhost:8000/tryon', {
+      const res = await fetch(`${API_BASE}/tryon`, {
         method: 'POST',
         body: form,
       })
@@ -71,7 +79,7 @@ export default function TryOn() {
         form.append('user_image', userFile)
         form.append('clothing_image', clothFile)
         form.append('background', bg)
-        const res = await fetch('http://localhost:8000/tryon', { method: 'POST', body: form })
+        const res = await fetch(`${API_BASE}/tryon`, { method: 'POST', body: form })
         if (!res.ok) throw new Error(await res.text())
         const data = (await res.json()) as { image_base64: string }
         return `data:image/png;base64,${data.image_base64}`

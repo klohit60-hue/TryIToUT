@@ -5,7 +5,7 @@ export default function Landing() {
     <div>
       <section className="bg-gradient-to-b from-pink-50 via-violet-50 to-cyan-50">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <div className="grid items-center gap-10 md:grid-cols-2">
+          <div className="grid items-start gap-10 md:grid-cols-2">
             <div>
               <h1 className="text-4xl md:text-5xl font-semibold tracking-tight bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">
                 TryItOut.Ai — try outfits on yourself
@@ -41,6 +41,13 @@ export default function Landing() {
                 <img
                   src="/landing-preview-3.png"
                   alt="TryItOut.Ai preview 3"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="mt-4 aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+                <img
+                  src="/untitled-design-36.png"
+                  alt="TryItOut.Ai preview — jacket try-on"
                   className="h-full w-full object-cover"
                 />
               </div>
