@@ -131,6 +131,7 @@ def health():
 
 
 @app.post("/tryon", response_model=TryOnResponse)
+@app.post("/api/tryon", response_model=TryOnResponse)
 async def tryon(
     user_image: UploadFile = File(...),
     clothing_image: UploadFile = File(...),
