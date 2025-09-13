@@ -24,7 +24,6 @@ export default function SignUp() {
             e.preventDefault()
             // Form elements
             const form = e.currentTarget as HTMLFormElement
-            const name = (form.elements[0] as HTMLInputElement).value
             const email = (form.elements[1] as HTMLInputElement).value
             const password = (form.elements[2] as HTMLInputElement).value
             // Create email user and send verification
