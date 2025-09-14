@@ -22,6 +22,7 @@ def generate_tryon_image(
     api_key: Optional[str] = None,
     model: str = "gemini-2.5-flash-image-preview",
     strict: bool = False,
+    retry_note: Optional[str] = None,
 ) -> str:
     """
     Calls Gemini API to generate a try-on image.
@@ -50,6 +51,8 @@ def generate_tryon_image(
             " Use the first image as the base and only modify the clothing region below the neck. Keep framing and composition identical. "
         )
 
+    retry_text = f" {retry_note} " if retry_note else ""
+
     payload = {
         "contents": [
             {
@@ -67,7 +70,7 @@ def generate_tryon_image(
                             " Output must be a single coherent photo of the person; no extra faces or duplicated subjects."
                             + extra_rules +
                             f" Set background to {background_choice}."
-                            " Output: a clean, artifact-free, high-resolution PNG. Return one inline PNG image as the first part."
+                            " Output: a clean, artifact-free, high-resolution PNG. Return one inline PNG image as the first part." + retry_text
                         )
                     },
                     {"inline_data": {"mime_type": "image/png", "data": user_b64}},

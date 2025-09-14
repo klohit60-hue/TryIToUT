@@ -218,9 +218,22 @@ async def tryon(
             images.append(img_b64)
         except Exception as e:
             message = str(e)
-            if message == "Gemini did not return an image":
+            # One retry in ultra-strict mode if we didn't get an image or quality is bad
+            try:
+                img_b64 = generate_tryon_image(
+                    user_png,
+                    clothing_png,
+                    background,
+                    strict=True,
+                    retry_note=(
+                        "If any overlay, collage, or inset portrait appears, discard and regenerate. "
+                        "Remove remnants of the original clothing entirely; replace, do not overlay."
+                    ),
+                )
+                images.append(img_b64)
                 continue
-            continue
+            except Exception:
+                continue
 
     if not images:
         raise HTTPException(status_code=500, detail="Generation failed")
