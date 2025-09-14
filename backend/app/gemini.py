@@ -50,6 +50,8 @@ def generate_tryon_image(
                             " Accurately reproduce the provided garment’s fabric, color, pattern, logo, silhouette, collars, sleeves, and lengths."
                             " You may adapt pose or viewpoint slightly for a natural fit and correct body/garment alignment."
                             " Render realistic cloth drape, folds, occlusions (arms/hair), and lighting consistent with the scene."
+                            " Absolutely avoid picture-in-picture, collages, frames, watermarks, borders, stickers, logos, or any inset portraits."
+                            " Output must be a single coherent photo of the person; no extra faces or duplicated subjects."
                             f" Set background to {background_choice}."
                             " Output: a clean, artifact-free, high-resolution PNG. Return one inline PNG image as the first part."
                         )

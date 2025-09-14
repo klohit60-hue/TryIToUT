@@ -80,6 +80,19 @@ def _preserve_face_with_poisson(user_png: bytes, generated_png: bytes) -> bytes:
         sx, sy, sw, sh = src_box
         dx, dy, dw, dh = dst_box
 
+        # Sanity checks to avoid blending a tiny/huge or misplaced face (prevents "face pasted" look)
+        H, W = gen_bgr.shape[:2]
+        if dw <= 0 or dh <= 0 or W <= 0 or H <= 0:
+            return generated_png
+        # Face should be within frame and not cover unrealistic area
+        if dx < 0 or dy < 0 or dx + dw > W or dy + dh > H:
+            return generated_png
+        face_area = dw * dh
+        frame_area = W * H
+        if face_area < 0.01 * frame_area or face_area > 0.25 * frame_area:
+            # Too small or too large → skip blending
+            return generated_png
+
         # Crop and resize user face to destination size
         user_face = user_bgr[max(sy, 0): sy + sh, max(sx, 0): sx + sw]
         if user_face.size == 0:
