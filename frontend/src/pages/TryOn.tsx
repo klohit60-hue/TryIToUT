@@ -32,6 +32,7 @@ export default function TryOn() {
   const [clothFile, setClothFile] = useState<File | null>(null)
   const [background, setBackground] = useState<BackgroundChoice>('Plain White')
   const [isLoading, setIsLoading] = useState(false)
+  const [variants, setVariants] = useState(2)
   const [results, setResults] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
   const [envLoading, setEnvLoading] = useState(false)
@@ -53,6 +54,7 @@ export default function TryOn() {
       form.append('user_image', userFile)
       form.append('clothing_image', clothFile)
       form.append('background', background)
+      form.append('variants', String(Math.max(1, Math.min(2, variants))))
 
       const res = await fetch(`${API_BASE}/tryon`, {
         method: 'POST',
@@ -62,11 +64,9 @@ export default function TryOn() {
         const msg = await res.text()
         throw new Error(msg || 'Generation failed')
       }
-      const data = (await res.json()) as { image_base64: string }
-      setResults((prev) => [
-        `data:image/png;base64,${data.image_base64}`,
-        ...prev,
-      ])
+      const data = (await res.json()) as { images_base64: string[] }
+      const imgs = (data.images_base64 || []).map((b64) => `data:image/png;base64,${b64}`)
+      setResults((prev) => [...imgs, ...prev])
     } catch (err: any) {
       setError(err?.message || 'Something went wrong')
     } finally {
@@ -87,8 +87,10 @@ export default function TryOn() {
         form.append('background', bg)
         const res = await fetch(`${API_BASE}/tryon`, { method: 'POST', body: form })
         if (!res.ok) throw new Error(await res.text())
-        const data = (await res.json()) as { image_base64: string }
-        return `data:image/png;base64,${data.image_base64}`
+        const data = (await res.json()) as { images_base64: string[] }
+        const first = data.images_base64?.[0]
+        if (!first) throw new Error('No image')
+        return `data:image/png;base64,${first}`
       }
 
       const settled = await Promise.allSettled(selected.map((bg) => fetchOne(bg)))

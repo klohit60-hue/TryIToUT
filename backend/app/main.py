@@ -13,7 +13,7 @@ import numpy as np
 import cv2
 import os
 
-from .schemas import TryOnResponse
+from .schemas import TryOnResponse, TryOnMultiResponse
 from .gemini import generate_tryon_image
 
 app = FastAPI(title="Virtual Try-On API")
@@ -162,8 +162,8 @@ def firebase_config():
     }
 
 
-@app.post("/tryon", response_model=TryOnResponse)
-@app.post("/api/tryon", response_model=TryOnResponse)
+@app.post("/tryon", response_model=TryOnMultiResponse)
+@app.post("/api/tryon", response_model=TryOnMultiResponse)
 async def tryon(
     user_image: UploadFile = File(...),
     clothing_image: UploadFile = File(...),
@@ -171,6 +171,7 @@ async def tryon(
         "Plain White", "Library", "Party", "Beach", "Office",
         "Street", "Bedroom", "Living Room", "Cafe", "Park", "Studio Gray"
     ] = Form(...),
+    variants: int = Form(2),
 ):
     # Read files
     user_bytes = await user_image.read()
@@ -204,23 +205,27 @@ async def tryon(
     except Exception:
         return JSONResponse(status_code=400, content={"detail": "Invalid clothing image"})
 
-    # Call Gemini
-    try:
-        # Use strict prompt rules to prevent collages/overlays of the clothing image model
-        img_b64 = generate_tryon_image(user_png, clothing_png, background, strict=True)
-        # Post-process to preserve original face region
-        generated_png = base64.b64decode(img_b64)
-        merged_png = _preserve_face_with_poisson(user_png, generated_png)
-        if merged_png != generated_png:
-            # Re-encode and return merged result
-            img_b64 = base64.b64encode(merged_png).decode('utf-8')
-    except Exception as e:
-        message = str(e)
-        if message == "Gemini did not return an image":
-            raise HTTPException(status_code=500, detail=message)
-        raise HTTPException(status_code=500, detail=message)
+    # Call Gemini for N variants (default 2)
+    images: list[str] = []
+    count = max(1, min(2, int(variants)))
+    for _ in range(count):
+        try:
+            img_b64 = generate_tryon_image(user_png, clothing_png, background, strict=True)
+            generated_png = base64.b64decode(img_b64)
+            merged_png = _preserve_face_with_poisson(user_png, generated_png)
+            if merged_png != generated_png:
+                img_b64 = base64.b64encode(merged_png).decode('utf-8')
+            images.append(img_b64)
+        except Exception as e:
+            message = str(e)
+            if message == "Gemini did not return an image":
+                continue
+            continue
 
-    return {"image_base64": img_b64}
+    if not images:
+        raise HTTPException(status_code=500, detail="Generation failed")
+
+    return {"images_base64": images}
 
 
 # SPA routes: serve index.html for client-side routes (must be BEFORE mount at "/")
