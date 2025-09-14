@@ -230,9 +230,15 @@ async def tryon(
 def spa_pages():
     return FileResponse("static/index.html")
 
-# Mount the React build at root AFTER API routes so it doesn't shadow them
+# Also serve index.html for root path
+@app.get("/", include_in_schema=False)
+def spa_index():
+    return FileResponse("static/index.html")
+
+# Mount the React build assets under explicit prefixes (avoid shadowing API routes)
 try:
-    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+    app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
 except Exception:
     pass
 
