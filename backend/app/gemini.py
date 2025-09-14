@@ -21,6 +21,7 @@ def generate_tryon_image(
     background_choice: str,
     api_key: Optional[str] = None,
     model: str = "gemini-2.5-flash-image-preview",
+    strict: bool = False,
 ) -> str:
     """
     Calls Gemini API to generate a try-on image.
@@ -37,6 +38,18 @@ def generate_tryon_image(
     user_b64 = _ensure_base64(user_png_bytes)
     clothing_b64 = _ensure_base64(clothing_png_bytes)
 
+    extra_rules = (
+        " The second image may include a model/person; treat it ONLY as garment reference. "
+        " Do NOT paste, overlay, blend, or insert the second image or any portion of it (face, hands, body) into the output. "
+        " The output must show exactly one person: the person from the first image only. No extra faces or people. "
+    )
+
+    if strict:
+        extra_rules += (
+            " Absolutely no picture-in-picture, no collages, no circular crops, no stickers, no logos, no text. "
+            " Use the first image as the base and only modify the clothing region below the neck. Keep framing and composition identical. "
+        )
+
     payload = {
         "contents": [
             {
@@ -52,6 +65,7 @@ def generate_tryon_image(
                             " Render realistic cloth drape, folds, occlusions (arms/hair), and lighting consistent with the scene."
                             " Absolutely avoid picture-in-picture, collages, frames, watermarks, borders, stickers, logos, or any inset portraits."
                             " Output must be a single coherent photo of the person; no extra faces or duplicated subjects."
+                            + extra_rules +
                             f" Set background to {background_choice}."
                             " Output: a clean, artifact-free, high-resolution PNG. Return one inline PNG image as the first part."
                         )

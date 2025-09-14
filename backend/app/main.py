@@ -196,7 +196,8 @@ async def tryon(
 
     # Call Gemini
     try:
-        img_b64 = generate_tryon_image(user_png, clothing_png, background)
+        # Use strict prompt rules to prevent collages/overlays of the clothing image model
+        img_b64 = generate_tryon_image(user_png, clothing_png, background, strict=True)
         # Post-process to preserve original face region
         generated_png = base64.b64decode(img_b64)
         merged_png = _preserve_face_with_poisson(user_png, generated_png)
