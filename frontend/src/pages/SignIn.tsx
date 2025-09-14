@@ -1,13 +1,49 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { auth } from '../firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 export default function SignIn() {
+  const navigate = useNavigate()
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault()
+    if (!auth) return
+    const form = e.currentTarget as HTMLFormElement
+    const email = (form.elements[0] as HTMLInputElement).value
+    const password = (form.elements[1] as HTMLInputElement).value
+    setError(null)
+    setLoading(true)
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password)
+      await user.reload()
+      const emailOk = !!user.emailVerified
+      const phoneOk = !!user.phoneNumber
+      if (!emailOk) {
+        setError('Please verify your email before signing in.')
+        return
+      }
+      if (!phoneOk) {
+        setError('Please link and verify a phone number via Sign Up flow.')
+        return
+      }
+      navigate('/app')
+    } catch (err: any) {
+      setError(err?.message || 'Failed to sign in')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-[calc(100vh-56px-56px)] flex items-center justify-center bg-gradient-to-b from-pink-50 via-violet-50 to-cyan-50 py-12 px-4">
       <div className="w-full max-w-md rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
         <h1 className="text-2xl font-semibold bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">Sign in</h1>
         <p className="mt-1 text-sm text-gray-600">Welcome back to TryItOut.Ai</p>
 
-        <form className="mt-6 space-y-4" onSubmit={(e) => e.preventDefault()}>
+        <form className="mt-6 space-y-4" onSubmit={onSubmit}>
           <div>
             <label className="block text-sm font-medium text-gray-700">Email</label>
             <input type="email" required className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"/>
@@ -17,8 +53,10 @@ export default function SignIn() {
             <input type="password" required className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm focus:border-indigo-500 focus:outline-none"/>
           </div>
 
-          <button type="submit" className="mt-2 w-full rounded-xl bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90">Sign in</button>
+          <button disabled={loading} type="submit" className="mt-2 w-full rounded-xl bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 disabled:opacity-60">{loading ? 'Signing in...' : 'Sign in'}</button>
         </form>
+
+        {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
 
         <p className="mt-4 text-center text-sm text-gray-600">
           New here? <Link to="/signup" className="text-indigo-600 hover:underline">Create an account</Link>
