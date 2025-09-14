@@ -223,16 +223,16 @@ async def tryon(
     return {"image_base64": img_b64}
 
 
-# Mount the React build at root AFTER API routes so it doesn't shadow them
-try:
-    app.mount("/", StaticFiles(directory="static", html=True), name="static")
-except Exception:
-    pass
-
-# SPA routes: serve index.html for client-side routes
+# SPA routes: serve index.html for client-side routes (must be BEFORE mount at "/")
 @app.get("/app", include_in_schema=False)
 @app.get("/signin", include_in_schema=False)
 @app.get("/signup", include_in_schema=False)
 def spa_pages():
     return FileResponse("static/index.html")
+
+# Mount the React build at root AFTER API routes so it doesn't shadow them
+try:
+    app.mount("/", StaticFiles(directory="static", html=True), name="static")
+except Exception:
+    pass
 
