@@ -124,9 +124,19 @@ def _preserve_face_with_poisson(user_png: bytes, generated_png: bytes) -> bytes:
         # Fallback on any error
         return generated_png
 
+# CORS allowlist for our domains and localhost
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost",
+        "http://localhost:5173",
+        "http://127.0.0.1",
+        "http://127.0.0.1:5173",
+        "http://tryitout.ai",
+        "https://tryitout.ai",
+        "http://www.tryitout.ai",
+        "https://www.tryitout.ai",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
