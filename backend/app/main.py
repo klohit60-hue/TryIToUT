@@ -124,6 +124,39 @@ def _preserve_face_with_poisson(user_png: bytes, generated_png: bytes) -> bytes:
         # Fallback on any error
         return generated_png
 
+
+def _reject_generated_if_collage(generated_png: bytes) -> bool:
+    """Heuristic filter to catch collage/inset-face artifacts.
+    Reject when: more than one detected face, or the only detected face sits unusually low
+    (e.g., embedded on clothing) relative to image height.
+    """
+    try:
+        arr = np.frombuffer(generated_png, dtype=np.uint8)
+        bgr = cv2.imdecode(arr, cv2.IMREAD_COLOR)
+        if bgr is None:
+            return False
+        gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+        face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+        faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(50, 50))
+        if len(faces) == 0:
+            # Sometimes the face detector misses valid faces; don't over-reject
+            return False
+        if len(faces) > 1:
+            return True
+        (x, y, w, h) = faces[0]
+        H, W = bgr.shape[:2]
+        # Reject if face center is below ~60% height (likely on torso/clothing)
+        cy = y + h / 2.0
+        if cy > 0.6 * H:
+            return True
+        # Reject if face area is implausibly small/large
+        area_ratio = (w * h) / float(max(1, W * H))
+        if area_ratio < 0.01 or area_ratio > 0.35:
+            return True
+        return False
+    except Exception:
+        return False
+
 # CORS allowlist for our domains and localhost
 app.add_middleware(
     CORSMiddleware,
@@ -209,16 +242,11 @@ async def tryon(
     images: list[str] = []
     count = max(1, min(2, int(variants)))
     for _ in range(count):
-        try:
-            img_b64 = generate_tryon_image(user_png, clothing_png, background, strict=True)
-            generated_png = base64.b64decode(img_b64)
-            merged_png = _preserve_face_with_poisson(user_png, generated_png)
-            if merged_png != generated_png:
-                img_b64 = base64.b64encode(merged_png).decode('utf-8')
-            images.append(img_b64)
-        except Exception as e:
-            message = str(e)
-            # One retry in ultra-strict mode if we didn't get an image or quality is bad
+        attempts = 0
+        accepted = False
+        last_b64: str | None = None
+        while attempts < 3 and not accepted:
+            attempts += 1
             try:
                 img_b64 = generate_tryon_image(
                     user_png,
@@ -226,12 +254,20 @@ async def tryon(
                     background,
                     strict=True,
                     retry_note=(
-                        "If any overlay, collage, or inset portrait appears, discard and regenerate. "
-                        "Remove remnants of the original clothing entirely; replace, do not overlay."
-                    ),
+                        "No overlays/collages/inset portraits. Do not place any faces on clothing. "
+                        "If any extra face is produced, discard and regenerate."
+                    ) if attempts > 1 else None,
                 )
+                generated_png = base64.b64decode(img_b64)
+                # Reject if collage/inset-face artifact is detected
+                if _reject_generated_if_collage(generated_png):
+                    last_b64 = img_b64
+                    continue
+                merged_png = _preserve_face_with_poisson(user_png, generated_png)
+                if merged_png != generated_png:
+                    img_b64 = base64.b64encode(merged_png).decode('utf-8')
                 images.append(img_b64)
-                continue
+                accepted = True
             except Exception:
                 continue
 
