@@ -48,7 +48,8 @@ def generate_tryon_image(
     if strict:
         extra_rules += (
             " Absolutely no picture-in-picture, no collages, no circular crops, no stickers, no logos, no text. "
-            " Use the first image as the base and only modify the clothing region below the neck. Keep framing and composition identical. "
+            " You may re-synthesize the body and pose (below the neck) to create a NATURAL, DIFFERENT pose than the original, suitable for the chosen environment (e.g., walking on a street, seated in a cafe, standing at a party). "
+            " Keep identity of the face and head exactly the same as the first image (no changes to facial features). Allow moderate camera angle/composition changes if needed for realism. "
         )
 
     retry_text = f" {retry_note} " if retry_note else ""
@@ -64,7 +65,7 @@ def generate_tryon_image(
                             " Critical: Do NOT alter the head/face region from the first image. Keep the same face, expression, hairline and skin details—no beautification or smoothing."
                             " Treat the head (from top of hair to just below the chin) as locked and unchanged; only edit from the neck/shoulders downward."
                             " Accurately reproduce the provided garment’s fabric, color, pattern, logo, silhouette, collars, sleeves, and lengths."
-                            " You may adapt pose or viewpoint slightly for a natural fit and correct body/garment alignment."
+                            " You may adapt pose or viewpoint for a natural fit and to match the environment; prefer a different pose than the original when it improves realism."
                             " Render realistic cloth drape, folds, occlusions (arms/hair), and lighting consistent with the scene."
                             " Absolutely avoid picture-in-picture, collages, frames, watermarks, borders, stickers, logos, or any inset portraits."
                             " Output must be a single coherent photo of the person; no extra faces or duplicated subjects."
