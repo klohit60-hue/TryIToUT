@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { auth } from '../firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -19,14 +19,8 @@ export default function SignIn() {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password)
       await user.reload()
-      const emailOk = !!user.emailVerified
-      const phoneOk = !!user.phoneNumber
-      if (!emailOk) {
+      if (!user.emailVerified) {
         setError('Please verify your email before signing in.')
-        return
-      }
-      if (!phoneOk) {
-        setError('Please link and verify a phone number via Sign Up flow.')
         return
       }
       navigate('/app')
@@ -34,6 +28,18 @@ export default function SignIn() {
       setError(err?.message || 'Failed to sign in')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const signInWithGoogle = async () => {
+    if (!auth) return
+    setError(null)
+    try {
+      const provider = new GoogleAuthProvider()
+      await signInWithPopup(auth, provider)
+      navigate('/app')
+    } catch (err: any) {
+      setError(err?.message || 'Google sign-in failed')
     }
   }
 
@@ -55,6 +61,8 @@ export default function SignIn() {
 
           <button disabled={loading} type="submit" className="mt-2 w-full rounded-xl bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 px-4 py-2 text-sm font-semibold text-white shadow hover:opacity-90 disabled:opacity-60">{loading ? 'Signing in...' : 'Sign in'}</button>
         </form>
+
+        <button onClick={signInWithGoogle} className="mt-3 w-full rounded-xl bg-white px-4 py-2 text-sm font-medium text-gray-800 border border-gray-200 shadow hover:bg-gray-50">Continue with Google</button>
 
         {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
 
