@@ -4,7 +4,7 @@ from typing import Literal, Optional, Tuple
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from dotenv import load_dotenv
 from PIL import Image
 from rembg import remove, new_session
@@ -228,4 +228,11 @@ try:
     app.mount("/", StaticFiles(directory="static", html=True), name="static")
 except Exception:
     pass
+
+# SPA routes: serve index.html for client-side routes
+@app.get("/app", include_in_schema=False)
+@app.get("/signin", include_in_schema=False)
+@app.get("/signup", include_in_schema=False)
+def spa_pages():
+    return FileResponse("static/index.html")
 
