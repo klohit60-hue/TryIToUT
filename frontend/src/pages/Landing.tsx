@@ -1,6 +1,31 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 export default function Landing() {
+  const slides = useMemo(
+    () => [
+      { src: '/landing-preview.png', alt: 'TryItOut.Ai preview' },
+      { src: '/landing-preview-2.png', alt: 'TryItOut.Ai preview 2' },
+      { src: '/landing-preview-3.png', alt: 'TryItOut.Ai preview 3' },
+      { src: '/untitled-design-36.png', alt: 'TryItOut.Ai preview — jacket try-on' },
+    ],
+    []
+  )
+  const [index, setIndex] = useState(0)
+  const timerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (timerRef.current) window.clearInterval(timerRef.current)
+    timerRef.current = window.setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length)
+    }, 3500)
+    return () => {
+      if (timerRef.current) window.clearInterval(timerRef.current)
+    }
+  }, [slides.length])
+
+  const go = (dir: -1 | 1) => setIndex((i) => (i + dir + slides.length) % slides.length)
+
   return (
     <div>
       <section className="bg-gradient-to-b from-pink-50 via-violet-50 to-cyan-50">
@@ -23,33 +48,22 @@ export default function Landing() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                <img
-                  src="/landing-preview.png"
-                  alt="TryItOut.Ai preview"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="mt-4 aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                <img
-                  src="/landing-preview-2.png"
-                  alt="TryItOut.Ai preview 2"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="mt-4 aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                <img
-                  src="/landing-preview-3.png"
-                  alt="TryItOut.Ai preview 3"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="mt-4 aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                <img
-                  src="/untitled-design-36.png"
-                  alt="TryItOut.Ai preview — jacket try-on"
-                  className="h-full w-full object-cover"
-                />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+                <div
+                  className="absolute inset-0 flex transition-transform duration-500"
+                  style={{ transform: `translateX(-${index * 100}%)` }}
+                >
+                  {slides.map((s, i) => (
+                    <img key={i} src={s.src} alt={s.alt} className="h-full w-full shrink-0 grow-0 basis-full object-cover" />
+                  ))}
+                </div>
+                <button aria-label="Previous" onClick={() => go(-1)} className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-2 py-1 text-sm shadow hover:bg-white">‹</button>
+                <button aria-label="Next" onClick={() => go(1)} className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-2 py-1 text-sm shadow hover:bg-white">›</button>
+                <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
+                  {slides.map((_, i) => (
+                    <span key={i} className={`h-1.5 w-1.5 rounded-full ${i === index ? 'bg-fuchsia-600' : 'bg-gray-300'}`}></span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -62,7 +76,7 @@ export default function Landing() {
           <div className="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             <Feature icon="✨" title="Realistic results" desc="Face, body and proportions are preserved. Natural shadows retained." />
             <Feature icon="🧥" title="Upload any top" desc="Use any clothing image — T-shirts, shirts, hoodies and more." />
-            <Feature icon="🌆" title="Backgrounds" desc="Pick from Plain White, Library, Party, Beach or Office." />
+            <Feature icon="🌆" title="Backgrounds" desc="Pick from many environments to match your vibe." />
             <Feature icon="⚡" title="Fast" desc="Generate results in seconds with our optimized pipeline." />
             <Feature icon="🔒" title="Private" desc="Images are processed just for your session and can be deleted." />
             <Feature icon="⬇️" title="Download & share" desc="Save your results or share them right from the gallery." />
