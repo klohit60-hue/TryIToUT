@@ -32,7 +32,6 @@ export default function TryOn() {
   const [clothFile, setClothFile] = useState<File | null>(null)
   const [background, setBackground] = useState<BackgroundChoice>('Plain White')
   const [isLoading, setIsLoading] = useState(false)
-  const [variants, setVariants] = useState(2)
   const [results, setResults] = useState<string[]>([])
   const [error, setError] = useState<string | null>(null)
   const [envLoading, setEnvLoading] = useState(false)
@@ -54,7 +53,7 @@ export default function TryOn() {
       form.append('user_image', userFile)
       form.append('clothing_image', clothFile)
       form.append('background', background)
-      form.append('variants', String(Math.max(1, Math.min(2, variants))))
+      form.append('variants', '2')
 
       const res = await fetch(`${API_BASE}/tryon`, {
         method: 'POST',
