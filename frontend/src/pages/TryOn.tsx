@@ -1,5 +1,6 @@
 import React, { useMemo, useRef, useState } from 'react'
-import { auth, getUserProfile, decrementTrialCredit } from '../firebase'
+import { useAuth } from '../context/AuthContext'
+import { usageApi } from '../lib/api'
 import UploadArea from '../components/UploadArea'
 import { Download, Share2, RotateCcw } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -29,6 +30,7 @@ const API_BASE =
     : 'https://tryitout-ai-06b6f1-1e7dca7aa188.herokuapp.com')
 
 export default function TryOn() {
+  const { user } = useAuth()
   const [userFile, setUserFile] = useState<File | null>(null)
   const [clothFile, setClothFile] = useState<File | null>(null)
   const [background, setBackground] = useState<BackgroundChoice>('Plain White')
@@ -47,21 +49,13 @@ export default function TryOn() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!userFile || !clothFile) return
-    // Gate by trial credits unless user is pro
-    const uid = auth?.currentUser?.uid
-    if (!uid) {
+    // Gate by backend usage unless user is pro
+    if (!user) {
       setError('Please sign in to use the trial.')
       return
     }
-    const profile = await getUserProfile(uid)
-    if (!profile) {
-      setError('Your account is not ready yet. Please try again in a moment.')
-      return
-    }
-    if (profile.plan !== 'pro' && (!profile.trialCredits || profile.trialCredits <= 0)) {
-      setError('Your free trial is used. Please upgrade in Account to continue.')
-      return
-    }
+    const access = await usageApi.check()
+    if (!access.allowed) { setError('Your free trial is used. Please upgrade in Account to continue.'); return }
     setIsLoading(true)
     setError(null)
     try {
@@ -82,10 +76,7 @@ export default function TryOn() {
       const data = (await res.json()) as { images_base64: string[] }
       const imgs = (data.images_base64 || []).map((b64) => `data:image/png;base64,${b64}`)
       setResults((prev) => [...imgs, ...prev])
-      // Decrement trial on success for trial users
-      if (profile.plan !== 'pro') {
-        await decrementTrialCredit(uid)
-      }
+      if (access.plan !== 'pro') await usageApi.consume()
     } catch (err: any) {
       setError(err?.message || 'Something went wrong')
     } finally {

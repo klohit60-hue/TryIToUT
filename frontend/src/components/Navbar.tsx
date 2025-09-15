@@ -18,6 +18,9 @@ export default function Navbar() {
           <NavLink to="/account" className={({ isActive }) => isActive ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}>
             Account
           </NavLink>
+          <NavLink to="/auth" className={({ isActive }) => isActive ? 'text-gray-900' : 'text-gray-600 hover:text-gray-900'}>
+            Login/Signup
+          </NavLink>
           <button className="inline-flex items-center gap-1.5 text-gray-600 hover:text-gray-900"><Info className="h-4 w-4"/> About</button>
           <button className="inline-flex items-center gap-1.5 text-gray-600 hover:text-gray-900"><HelpCircle className="h-4 w-4"/> Help</button>
           <NavLink to="/signin" className={({ isActive }) => isActive ? 'text-gray-900 inline-flex items-center gap-1.5' : 'text-gray-600 hover:text-gray-900 inline-flex items-center gap-1.5'}>
