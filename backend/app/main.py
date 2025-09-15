@@ -378,6 +378,10 @@ async def tryon(
             except Exception:
                 continue
 
+        # If all attempts were rejected by guards but we have a last image, return it instead of 500
+        if not accepted and last_b64:
+            images.append(last_b64)
+
     if not images:
         raise HTTPException(status_code=500, detail="Generation failed")
 

@@ -101,10 +101,10 @@ def generate_tryon_image(
 
     last_error_text = None
     data = None
-    for candidate_model in models_to_try:
+    for candidate_model in models_to_try[:2]:
         url = f"{GEMINI_API_BASE}/{candidate_model}:generateContent?key={key}"
         try:
-            resp = requests.post(url, json=payload, headers=headers, timeout=22)
+            resp = requests.post(url, json=payload, headers=headers, timeout=15)
         except requests.RequestException as req_err:
             logger.error("Gemini request failed for %s: %s", candidate_model, str(req_err)[:300])
             last_error_text = str(req_err)[:300]
