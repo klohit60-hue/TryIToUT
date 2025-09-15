@@ -283,6 +283,12 @@ async def tryon(
     return {"images_base64": images}
 
 
+# Explicit CORS preflight handlers for browsers
+@app.options("/tryon", include_in_schema=False)
+@app.options("/api/tryon", include_in_schema=False)
+def tryon_options():
+    return JSONResponse({})
+
 # SPA routes: serve index.html for client-side routes (must be BEFORE mount at "/")
 @app.get("/app", include_in_schema=False)
 @app.get("/signin", include_in_schema=False)
