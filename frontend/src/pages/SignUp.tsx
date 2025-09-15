@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { auth } from '../firebase'
+import { auth, ensureUserProfile } from '../firebase'
 import { createUserWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 
 export default function SignUp() {
@@ -21,6 +21,8 @@ export default function SignUp() {
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email, password)
       await sendEmailVerification(user)
+      // Create initial profile (trial) immediately; user can use after email verification
+      await ensureUserProfile({ uid: user.uid, email: user.email, displayName: user.displayName || undefined })
       setEmailSent(true)
       setMessage('Verification email sent. Please verify and then click "I\'ve verified".')
     } catch (err: any) {
@@ -46,7 +48,8 @@ export default function SignUp() {
     if (!auth) return
     try {
       const provider = new GoogleAuthProvider()
-      await signInWithPopup(auth, provider)
+      const { user } = await signInWithPopup(auth, provider)
+      await ensureUserProfile({ uid: user.uid, email: user.email, displayName: user.displayName || undefined })
       navigate('/app')
     } catch (err: any) {
       setMessage(err?.message || 'Google sign-in failed')

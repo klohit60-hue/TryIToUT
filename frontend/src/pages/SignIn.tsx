@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { auth } from '../firebase'
+import { auth, ensureUserProfile } from '../firebase'
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult } from 'firebase/auth'
 
 export default function SignIn() {
@@ -38,7 +38,8 @@ export default function SignIn() {
       const provider = new GoogleAuthProvider()
       provider.setCustomParameters({ prompt: 'select_account' })
       // Try popup first
-      await signInWithPopup(auth, provider)
+      const { user } = await signInWithPopup(auth, provider)
+      await ensureUserProfile({ uid: user.uid, email: user.email, displayName: user.displayName || undefined })
       navigate('/app')
     } catch (err: any) {
       const code = err?.code || ''
@@ -71,6 +72,7 @@ export default function SignIn() {
       try {
         const result = await getRedirectResult(auth)
         if (result?.user) {
+          await ensureUserProfile({ uid: result.user.uid, email: result.user.email, displayName: result.user.displayName || undefined })
           navigate('/app')
         }
       } catch (e: any) {

@@ -1,4 +1,5 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
+import { auth, getUserProfile, decrementTrialCredit } from '../firebase'
 import UploadArea from '../components/UploadArea'
 import { Download, Share2, RotateCcw } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -46,6 +47,21 @@ export default function TryOn() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!userFile || !clothFile) return
+    // Gate by trial credits unless user is pro
+    const uid = auth?.currentUser?.uid
+    if (!uid) {
+      setError('Please sign in to use the trial.')
+      return
+    }
+    const profile = await getUserProfile(uid)
+    if (!profile) {
+      setError('Your account is not ready yet. Please try again in a moment.')
+      return
+    }
+    if (profile.plan !== 'pro' && (!profile.trialCredits || profile.trialCredits <= 0)) {
+      setError('Your free trial is used. Please upgrade in Account to continue.')
+      return
+    }
     setIsLoading(true)
     setError(null)
     try {
@@ -66,6 +82,10 @@ export default function TryOn() {
       const data = (await res.json()) as { images_base64: string[] }
       const imgs = (data.images_base64 || []).map((b64) => `data:image/png;base64,${b64}`)
       setResults((prev) => [...imgs, ...prev])
+      // Decrement trial on success for trial users
+      if (profile.plan !== 'pro') {
+        await decrementTrialCredit(uid)
+      }
     } catch (err: any) {
       setError(err?.message || 'Something went wrong')
     } finally {
