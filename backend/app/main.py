@@ -166,6 +166,79 @@ def _reject_generated_if_collage(generated_png: bytes) -> bool:
     except Exception:
         return False
 
+
+def _auto_crop_letterbox(generated_png: bytes) -> bytes:
+    """Remove uniform near-black letterbox bars from edges (left/right/top/bottom).
+    Crops only when large contiguous edge strips are >98% near-black and
+    total crop per edge is <=20% of dimension.
+    """
+    try:
+        arr = np.frombuffer(generated_png, dtype=np.uint8)
+        bgr = cv2.imdecode(arr, cv2.IMREAD_COLOR)
+        if bgr is None:
+            return generated_png
+        H, W = bgr.shape[:2]
+        if H < 10 or W < 10:
+            return generated_png
+
+        gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
+        black_thresh = 14  # very dark
+        max_frac = 0.20
+        min_run = 6
+
+        def count_black_cols_from_edge(img_gray: np.ndarray, from_left: bool) -> int:
+            h, w = img_gray.shape
+            limit = int(w * max_frac)
+            run = 0
+            rng = range(w) if from_left else range(w - 1, -1, -1)
+            for xi, x in enumerate(rng):
+                if xi >= limit:
+                    break
+                col = img_gray[:, x]
+                black_ratio = float((col <= black_thresh).sum()) / float(h)
+                if black_ratio >= 0.98:
+                    run += 1
+                else:
+                    break
+            return run if run >= min_run else 0
+
+        def count_black_rows_from_edge(img_gray: np.ndarray, from_top: bool) -> int:
+            h, w = img_gray.shape
+            limit = int(h * max_frac)
+            run = 0
+            rng = range(h) if from_top else range(h - 1, -1, -1)
+            for yi, y in enumerate(rng):
+                if yi >= limit:
+                    break
+                row = img_gray[y, :]
+                black_ratio = float((row <= black_thresh).sum()) / float(w)
+                if black_ratio >= 0.98:
+                    run += 1
+                else:
+                    break
+            return run if run >= min_run else 0
+
+        left = count_black_cols_from_edge(gray, True)
+        right = count_black_cols_from_edge(gray, False)
+        top = count_black_rows_from_edge(gray, True)
+        bottom = count_black_rows_from_edge(gray, False)
+
+        x0 = left
+        x1 = W - right
+        y0 = top
+        y1 = H - bottom
+        # Validate crop box
+        if x0 < 0 or y0 < 0 or x1 <= x0 + 10 or y1 <= y0 + 10:
+            return generated_png
+
+        cropped = bgr[y0:y1, x0:x1]
+        ok, out = cv2.imencode('.png', cropped)
+        if not ok:
+            return generated_png
+        return out.tobytes()
+    except Exception:
+        return generated_png
+
 # CORS allowlist for our domains and localhost
 app.add_middleware(
     CORSMiddleware,
@@ -280,6 +353,10 @@ async def tryon(
                     merged_png = _preserve_face_with_poisson(user_png, generated_png)
                     if merged_png != generated_png:
                         img_b64 = base64.b64encode(merged_png).decode('utf-8')
+                # Auto-crop letterbox if present
+                cropped_png = _auto_crop_letterbox(base64.b64decode(img_b64))
+                if cropped_png:
+                    img_b64 = base64.b64encode(cropped_png).decode('utf-8')
                 images.append(img_b64)
                 accepted = True
             except Exception:

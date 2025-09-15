@@ -68,6 +68,7 @@ def generate_tryon_image(
                             " Render realistic cloth drape, folds, occlusions (arms/hair), and lighting consistent with the scene."
                             " Absolutely avoid picture-in-picture, collages, frames, watermarks, borders, stickers, logos, or any inset portraits."
                             " Output must be a single coherent photo of the person; no extra faces or duplicated subjects."
+                            " Do not add black bars, frames, borders, or letterboxing. Fill the full canvas naturally."
                             + extra_rules +
                             f" Set background to {background_choice}."
                             " Output: a clean, artifact-free, high-resolution PNG. Return one inline PNG image as the first part." + retry_text
