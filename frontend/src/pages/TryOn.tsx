@@ -53,7 +53,7 @@ export default function TryOn() {
       form.append('user_image', userFile)
       form.append('clothing_image', clothFile)
       form.append('background', background)
-      form.append('variants', '2')
+      form.append('variants', '1')
 
       const res = await fetch(`${API_BASE}/tryon`, {
         method: 'POST',
