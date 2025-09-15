@@ -237,12 +237,16 @@ async def tryon(
     user_no_bg.save(out_buf, format="PNG")
     user_png = out_buf.getvalue()
 
-    # Ensure clothing is PNG bytes
+    # Ensure clothing is PNG bytes (and remove its background to avoid overlay/mannequin artifacts)
     try:
         cloth_img = Image.open(io.BytesIO(clothing_bytes)).convert("RGBA")
         cloth_img = _downscale_max_dim(cloth_img, _max_dim)
+        try:
+            cloth_no_bg = remove(cloth_img, session=_rembg_session)
+        except Exception:
+            cloth_no_bg = cloth_img
         out_cloth = io.BytesIO()
-        cloth_img.save(out_cloth, format="PNG")
+        cloth_no_bg.save(out_cloth, format="PNG")
         clothing_png = out_cloth.getvalue()
     except Exception:
         return JSONResponse(status_code=400, content={"detail": "Invalid clothing image"})
