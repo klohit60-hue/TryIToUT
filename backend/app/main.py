@@ -295,10 +295,9 @@ def spa_pages():
 def spa_index():
     return FileResponse("static/index.html")
 
-# Mount the React build assets under explicit prefixes (avoid shadowing API routes)
+# Serve built static files at root so "/vite.svg" and preview images resolve
 try:
-    app.mount("/static", StaticFiles(directory="static"), name="static")
-    app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
+    app.mount("/", StaticFiles(directory="static"), name="static")
 except Exception:
     pass
 
