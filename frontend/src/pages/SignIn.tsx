@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { auth } from '../firebase'
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult } from 'firebase/auth'
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -36,12 +36,49 @@ export default function SignIn() {
     setError(null)
     try {
       const provider = new GoogleAuthProvider()
+      provider.setCustomParameters({ prompt: 'select_account' })
+      // Try popup first
       await signInWithPopup(auth, provider)
       navigate('/app')
     } catch (err: any) {
+      const code = err?.code || ''
+      // Fallback to redirect for COOP/cookie/popup issues
+      if (
+        code.includes('popup-blocked') ||
+        code.includes('popup-closed-by-user') ||
+        code.includes('unauthorized-domain') ||
+        code.includes('internal-error') ||
+        code.includes('operation-not-supported-in-this-environment')
+      ) {
+        try {
+          const provider = new GoogleAuthProvider()
+          provider.setCustomParameters({ prompt: 'select_account' })
+          await signInWithRedirect(auth, provider)
+          return
+        } catch (redirectErr: any) {
+          setError(redirectErr?.message || 'Google redirect sign-in failed')
+          return
+        }
+      }
       setError(err?.message || 'Google sign-in failed')
     }
   }
+
+  // Handle redirect result (returns user after signInWithRedirect)
+  useEffect(() => {
+    if (!auth) return
+    ;(async () => {
+      try {
+        const result = await getRedirectResult(auth)
+        if (result?.user) {
+          navigate('/app')
+        }
+      } catch (e: any) {
+        // Surface but do not block UI
+        console.warn('Google redirect result error:', e?.message || e)
+      }
+    })()
+  }, [navigate])
 
   return (
     <div className="min-h-[calc(100vh-56px-56px)] flex items-center justify-center bg-gradient-to-b from-pink-50 via-violet-50 to-cyan-50 py-12 px-4">
