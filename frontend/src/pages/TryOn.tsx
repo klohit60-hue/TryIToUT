@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useEffect } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { auth, getUserProfile, decrementTrialCredit } from '../firebase'
 import UploadArea from '../components/UploadArea'
 import { Download, Share2, RotateCcw } from 'lucide-react'
