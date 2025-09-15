@@ -24,6 +24,11 @@ load_dotenv()
 # Configurable model and image size (override via env)
 _rembg_model_name = os.getenv("REMBG_MODEL", "u2net")
 _max_dim_str = os.getenv("MAX_DIM", "1536")
+_face_blend_enabled = os.getenv("FACE_BLEND", "1").lower() not in ("0", "false", "no")
+try:
+    _max_variants = max(1, min(3, int(os.getenv("MAX_VARIANTS", "1"))))
+except Exception:
+    _max_variants = 1
 try:
     _max_dim = max(256, min(4096, int(_max_dim_str)))
 except Exception:
@@ -204,7 +209,7 @@ async def tryon(
         "Plain White", "Library", "Party", "Beach", "Office",
         "Street", "Bedroom", "Living Room", "Cafe", "Park", "Studio Gray"
     ] = Form(...),
-    variants: int = Form(2),
+    variants: int = Form(1),
 ):
     # Read files
     user_bytes = await user_image.read()
@@ -240,12 +245,12 @@ async def tryon(
 
     # Call Gemini for N variants (default 2)
     images: list[str] = []
-    count = max(1, min(2, int(variants)))
+    count = max(1, min(_max_variants, int(variants)))
     for _ in range(count):
         attempts = 0
         accepted = False
         last_b64: str | None = None
-        while attempts < 3 and not accepted:
+        while attempts < 2 and not accepted:
             attempts += 1
             try:
                 img_b64 = generate_tryon_image(
@@ -263,9 +268,10 @@ async def tryon(
                 if _reject_generated_if_collage(generated_png):
                     last_b64 = img_b64
                     continue
-                merged_png = _preserve_face_with_poisson(user_png, generated_png)
-                if merged_png != generated_png:
-                    img_b64 = base64.b64encode(merged_png).decode('utf-8')
+                if _face_blend_enabled:
+                    merged_png = _preserve_face_with_poisson(user_png, generated_png)
+                    if merged_png != generated_png:
+                        img_b64 = base64.b64encode(merged_png).decode('utf-8')
                 images.append(img_b64)
                 accepted = True
             except Exception:
