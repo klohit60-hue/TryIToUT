@@ -155,13 +155,13 @@ def _reject_generated_if_collage(generated_png: bytes) -> bool:
             return True
         (x, y, w, h) = faces[0]
         H, W = bgr.shape[:2]
-        # Reject if face center is below ~60% height (likely on torso/clothing)
+        # Reject if face center is below ~70% height (more lenient for pose/composition changes)
         cy = y + h / 2.0
-        if cy > 0.6 * H:
+        if cy > 0.7 * H:
             return True
         # Reject if face area is implausibly small/large
         area_ratio = (w * h) / float(max(1, W * H))
-        if area_ratio < 0.01 or area_ratio > 0.35:
+        if area_ratio < 0.008 or area_ratio > 0.40:
             return True
         return False
     except Exception:
@@ -365,7 +365,7 @@ async def tryon(
                 if _reject_generated_if_collage(generated_png):
                     last_b64 = img_b64
                     continue
-                if _face_blend_enabled:
+                if _face_blend_enabled and attempts > 1:
                     merged_png = _preserve_face_with_poisson(user_png, generated_png)
                     if merged_png != generated_png:
                         img_b64 = base64.b64encode(merged_png).decode('utf-8')
