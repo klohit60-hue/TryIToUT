@@ -354,6 +354,7 @@ async def tryon(
                     clothing_png,
                     background,
                     strict=True,
+                    profile=os.getenv("PROMPT_PROFILE", "sep10"),
                     retry_note=(
                         "No overlays/collages/inset portraits. Do not place any faces on clothing. "
                         "If any extra face is produced, discard and regenerate."

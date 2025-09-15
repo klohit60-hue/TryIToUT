@@ -23,6 +23,7 @@ def generate_tryon_image(
     model: str = "gemini-2.5-flash-image-preview",
     strict: bool = False,
     retry_note: Optional[str] = None,
+    profile: Optional[str] = None,
 ) -> str:
     """
     Calls Gemini API to generate a try-on image.
@@ -39,11 +40,21 @@ def generate_tryon_image(
     user_b64 = _ensure_base64(user_png_bytes)
     clothing_b64 = _ensure_base64(clothing_png_bytes)
 
-    extra_rules = (
-        " The second image may include a model/person; treat it ONLY as garment reference. "
-        " Do NOT paste, overlay, blend, or insert the second image or any portion of it (face, hands, body) into the output. "
-        " The output must show exactly one person: the person from the first image only. No extra faces or people. "
-    )
+    # Prompt profiles
+    if (profile or "").lower() in ("sep10", "classic"):
+        # A gentler profile resembling the version used around Sept 10
+        extra_rules = (
+            " Keep the person’s identity and facial features exactly the same. "
+            " Fit the garment naturally with realistic drape, folds and lighting that matches the scene. "
+            " Remove remnants of the original outfit. Respect occlusions (arms/hair/jewelry). "
+            " Avoid obvious artifacts or picture-in-picture. Return a single coherent PNG. "
+        )
+    else:
+        extra_rules = (
+            " The second image may include a model/person; treat it ONLY as garment reference. "
+            " Do NOT paste, overlay, blend, or insert the second image or any portion of it (face, hands, body) into the output. "
+            " The output must show exactly one person: the person from the first image only. No extra faces or people. "
+        )
 
     if strict:
         extra_rules += (
