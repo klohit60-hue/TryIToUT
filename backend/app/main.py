@@ -1,4 +1,5 @@
 import io
+import gc
 from typing import Literal, Optional, Tuple
 
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
@@ -309,6 +310,14 @@ async def tryon(
     out_buf = io.BytesIO()
     user_no_bg.save(out_buf, format="PNG")
     user_png = out_buf.getvalue()
+    # Free PIL objects early
+    try:
+        user_img.close()
+        user_no_bg.close()
+    except Exception:
+        pass
+    del out_buf
+    gc.collect()
 
     # Ensure clothing is PNG bytes (and remove its background to avoid overlay/mannequin artifacts)
     try:
@@ -321,6 +330,12 @@ async def tryon(
         out_cloth = io.BytesIO()
         cloth_no_bg.save(out_cloth, format="PNG")
         clothing_png = out_cloth.getvalue()
+        try:
+            cloth_img.close()
+            cloth_no_bg.close()
+        except Exception:
+            pass
+        del out_cloth
     except Exception:
         return JSONResponse(status_code=400, content={"detail": "Invalid clothing image"})
 
@@ -365,6 +380,8 @@ async def tryon(
     if not images:
         raise HTTPException(status_code=500, detail="Generation failed")
 
+    # Encourage memory release
+    gc.collect()
     return {"images_base64": images}
 
 
