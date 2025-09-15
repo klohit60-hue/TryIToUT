@@ -30,6 +30,10 @@ try:
 except Exception:
     _max_variants = 1
 try:
+    _max_attempts = max(1, min(3, int(os.getenv("RETRIES", "1"))))
+except Exception:
+    _max_attempts = 1
+try:
     _max_dim = max(256, min(4096, int(_max_dim_str)))
 except Exception:
     _max_dim = 1536
@@ -250,7 +254,7 @@ async def tryon(
         attempts = 0
         accepted = False
         last_b64: str | None = None
-        while attempts < 2 and not accepted:
+        while attempts < _max_attempts and not accepted:
             attempts += 1
             try:
                 img_b64 = generate_tryon_image(
