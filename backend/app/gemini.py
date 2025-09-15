@@ -92,7 +92,12 @@ def generate_tryon_image(
     data = None
     for candidate_model in models_to_try:
         url = f"{GEMINI_API_BASE}/{candidate_model}:generateContent?key={key}"
-        resp = requests.post(url, json=payload, headers=headers, timeout=180)
+        try:
+            resp = requests.post(url, json=payload, headers=headers, timeout=22)
+        except requests.RequestException as req_err:
+            logger.error("Gemini request failed for %s: %s", candidate_model, str(req_err)[:300])
+            last_error_text = str(req_err)[:300]
+            continue
         if resp.status_code == 200:
             data = resp.json()
             break
@@ -100,6 +105,11 @@ def generate_tryon_image(
         if resp.status_code == 404:
             logger.error("Gemini API error: %s %s", resp.status_code, resp.text[:500])
             last_error_text = resp.text[:500]
+            continue
+        # For transient/server/quota errors, try the next candidate model
+        if resp.status_code in (429, 500, 502, 503):
+            logger.warning("Gemini transient error on %s: %s %s", candidate_model, resp.status_code, resp.text[:300])
+            last_error_text = resp.text[:300]
             continue
         # Any other error -> raise immediately
         logger.error("Gemini API error: %s %s", resp.status_code, resp.text[:500])
