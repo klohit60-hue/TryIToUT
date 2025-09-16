@@ -82,6 +82,9 @@ def generate_tryon_image(
                             " Do not add black bars, frames, borders, or letterboxing. Fill the full canvas naturally."
                             + extra_rules +
                             f" Set background to {background_choice}."
+                            " Replace only the clothing in this image with the provided garment. Keep the person’s facial identity consistent and realistic."
+                            " Allow subtle improvements to lighting and details. Ensure the background is slightly sharper and natural,"
+                            " with moderate clarity and detail so it looks real but does not distract—keep the person and outfit as the main focus."
                             " Output: a clean, artifact-free, high-resolution PNG. Return one inline PNG image as the first part." + retry_text
                         )
                     },
