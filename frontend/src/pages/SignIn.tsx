@@ -8,6 +8,13 @@ export default function SignIn() {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
+  // If already signed in (e.g., Google redirect returned), go to dashboard
+  useEffect(() => {
+    if (auth?.currentUser) {
+      navigate('/account', { replace: true })
+    }
+  }, [navigate])
+
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
     if (!auth) return
