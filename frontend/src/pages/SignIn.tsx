@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { auth, ensureUserProfile } from '../firebase'
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult } from 'firebase/auth'
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth'
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -10,9 +10,13 @@ export default function SignIn() {
 
   // If already signed in (e.g., Google redirect returned), go to dashboard
   useEffect(() => {
-    if (auth?.currentUser) {
-      navigate('/account', { replace: true })
-    }
+    if (!auth) return
+    // Immediate fast path
+    if (auth.currentUser) navigate('/account', { replace: true })
+    const unsub = onAuthStateChanged(auth, (u) => {
+      if (u) navigate('/account', { replace: true })
+    })
+    return () => unsub()
   }, [navigate])
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
