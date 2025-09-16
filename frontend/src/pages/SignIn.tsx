@@ -23,7 +23,8 @@ export default function SignIn() {
         setError('Please verify your email before signing in.')
         return
       }
-      navigate('/account')
+      // Ensure navigation after auth state settles
+      setTimeout(() => navigate('/account'), 50)
     } catch (err: any) {
       setError(err?.message || 'Failed to sign in')
     } finally {
@@ -40,7 +41,7 @@ export default function SignIn() {
       // Try popup first
       const { user } = await signInWithPopup(auth, provider)
       await ensureUserProfile({ uid: user.uid, email: user.email, displayName: user.displayName || undefined })
-      navigate('/account')
+      setTimeout(() => navigate('/account'), 50)
     } catch (err: any) {
       const code = err?.code || ''
       // Fallback to redirect for COOP/cookie/popup issues
@@ -73,7 +74,7 @@ export default function SignIn() {
         const result = await getRedirectResult(auth)
         if (result?.user) {
           await ensureUserProfile({ uid: result.user.uid, email: result.user.email, displayName: result.user.displayName || undefined })
-          navigate('/account')
+          setTimeout(() => navigate('/account'), 50)
         }
       } catch (e: any) {
         // Surface but do not block UI

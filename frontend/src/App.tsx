@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp'
 import Account from './pages/Account'
 import AuthPage from './pages/Auth'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { auth as fbAuth } from './firebase'
 
 function App() {
   return (
@@ -34,7 +35,11 @@ function App() {
 function Protected({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
   if (loading) return <div className="p-6">Loading…</div>
-  if (!user) return <Navigate to="/signin" replace />
+  if (!user) {
+    // Allow if Firebase session exists but context hasn't hydrated yet
+    const hasFirebaseSession = !!fbAuth?.currentUser
+    if (!hasFirebaseSession) return <Navigate to="/signin" replace />
+  }
   return <>{children}</>
 }
 
