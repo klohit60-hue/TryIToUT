@@ -100,6 +100,12 @@ export default function SignIn() {
         <h1 className="text-2xl font-semibold bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">Sign in</h1>
         <p className="mt-1 text-sm text-gray-600">Welcome back to TryItOut.Ai</p>
 
+        <div className="mt-4 flex items-center justify-between gap-3">
+          <button onClick={() => navigate('/signup')} className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-800 shadow hover:bg-gray-50">
+            New here? Create an account
+          </button>
+        </div>
+
         <form className="mt-6 space-y-4" onSubmit={onSubmit}>
           <div>
             <label className="block text-sm font-medium text-gray-700">Email</label>
