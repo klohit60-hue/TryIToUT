@@ -19,7 +19,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/auth" element={<AuthPage />} />
-            <Route path="/app" element={<Protected><TryOn /></Protected>} />
+            <Route path="/app" element={<TryOn />} />
             <Route path="/account" element={<Protected><Account /></Protected>} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />

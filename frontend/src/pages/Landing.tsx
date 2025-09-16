@@ -39,7 +39,7 @@ export default function Landing() {
                 Upload your photo and a clothing image. We swap the top while keeping your face and body intact — with realistic lighting and shadows.
               </p>
               <div className="mt-8 flex gap-3">
-                <Link to="/signin" className="rounded-lg bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 px-5 py-3 text-sm font-medium text-white shadow hover:opacity-90">
+                <Link to="/app" className="rounded-lg bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 px-5 py-3 text-sm font-medium text-white shadow hover:opacity-90">
                   Get Started
                 </Link>
                 <a href="#features" className="rounded-lg border border-fuchsia-200 px-5 py-3 text-sm font-medium text-gray-700 hover:bg-white/60">
