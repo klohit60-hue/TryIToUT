@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { api, billingApi } from '../lib/api'
+import { auth as fbAuth } from '../firebase'
+import { useNavigate, Link } from 'react-router-dom'
 
 type Profile = { id: string; name?: string; email: string; avatarUrl?: string; plan: 'trial'|'pro'; trialRemaining?: number }
 
 export default function Account() {
   const { user, signout } = useAuth()
+  const navigate = useNavigate()
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -19,13 +22,23 @@ export default function Account() {
     return () => { mounted = false }
   }, [user])
 
+  // If not authenticated at all, send to /signin
+  useEffect(() => {
+    if (!user && !fbAuth?.currentUser && !loading) {
+      navigate('/signin', { replace: true })
+    }
+  }, [user, loading, navigate])
+
   return (
     <div className="mx-auto max-w-3xl p-6">
       <h1 className="text-2xl font-semibold">Account</h1>
       {loading ? (
         <p className="mt-4 text-sm text-gray-600">Loading...</p>
       ) : !user ? (
-        <p className="mt-4 text-sm text-gray-600">Please sign in to view your account.</p>
+        <div className="mt-6">
+          <p className="text-sm text-gray-600 mb-3">Please sign in to view your account.</p>
+          <Link to="/signin" className="inline-block rounded-xl bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-indigo-700">Sign in</Link>
+        </div>
       ) : !profile ? (
         <p className="mt-4 text-sm text-gray-600">Profile not found. Try again shortly.</p>
       ) : (
