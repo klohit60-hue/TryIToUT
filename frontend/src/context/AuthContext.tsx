@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { authApi, setToken, clearToken, getToken } from '../lib/api'
+import { auth as fbAuth } from '../firebase'
+import { onAuthStateChanged } from 'firebase/auth'
 
 type User = { id: string; email: string; name?: string; plan: 'trial'|'pro'; trialRemaining?: number }
 
@@ -19,8 +21,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const token = getToken()
-    if (!token) { setLoading(false); return }
-    authApi.me().then((u) => setUser(u)).finally(() => setLoading(false))
+    if (token) {
+      authApi.me().then((u) => setUser(u)).finally(() => setLoading(false))
+    } else if (fbAuth) {
+      const unsub = onAuthStateChanged(fbAuth, (u) => {
+        if (u) {
+          setUser({ id: u.uid, email: u.email || '', name: u.displayName || undefined, plan: 'trial' })
+        } else if (!getToken()) {
+          setUser(null)
+        }
+        setLoading(false)
+      })
+      return () => unsub()
+    } else {
+      setLoading(false)
+    }
   }, [])
 
   const signin = async (email: string, password: string) => {

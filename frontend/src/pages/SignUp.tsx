@@ -40,7 +40,7 @@ export default function SignUp() {
       const ok = !!auth.currentUser.emailVerified
       setEmailVerified(ok)
       if (!ok) setMessage('Email not verified yet. Please click the link in your inbox.')
-      else navigate('/app')
+      else navigate('/account')
     } catch (_) {}
   }
 
@@ -50,7 +50,7 @@ export default function SignUp() {
       const provider = new GoogleAuthProvider()
       const { user } = await signInWithPopup(auth, provider)
       await ensureUserProfile({ uid: user.uid, email: user.email, displayName: user.displayName || undefined })
-      navigate('/app')
+      navigate('/account')
     } catch (err: any) {
       setMessage(err?.message || 'Google sign-in failed')
     }
