@@ -8,6 +8,7 @@ export default function Landing() {
       { src: '/static/landing-preview-2.png', alt: 'TryItOut.Ai preview 2' },
       { src: '/static/landing-preview-3.png', alt: 'TryItOut.Ai preview 3' },
       { src: '/static/untitled-design-36.png', alt: 'TryItOut.Ai preview — jacket try-on' },
+      { src: '/static/Untitled design (41).png', alt: 'TryItOut.Ai preview — new design' },
     ],
     []
   )
