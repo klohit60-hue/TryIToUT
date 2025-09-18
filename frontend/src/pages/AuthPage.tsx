@@ -7,7 +7,8 @@ import {
   sendEmailVerification, 
   GoogleAuthProvider, 
   signInWithPopup,
-  onAuthStateChanged
+  onAuthStateChanged,
+  updateProfile
 } from 'firebase/auth'
 import LoadingSpinner from '../components/LoadingSpinner'
 
@@ -71,7 +72,7 @@ export default function AuthPage() {
         
         // Update display name if provided
         if (formData.name) {
-          await user.updateProfile({ displayName: formData.name })
+          await updateProfile(user, { displayName: formData.name })
         }
         
         // Send email verification
