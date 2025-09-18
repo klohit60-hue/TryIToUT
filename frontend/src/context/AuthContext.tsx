@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { authApi, setToken, clearToken, getToken } from '../lib/api'
-import { auth as fbAuth, getUserProfile, ensureUserProfile } from '../firebase'
+import { auth as fbAuth, getUserProfile } from '../firebase'
 import { onAuthStateChanged, signOut as fbSignOut } from 'firebase/auth'
 
 type User = { id: string; email: string; name?: string; plan: 'trial'|'pro'; trialRemaining?: number }
