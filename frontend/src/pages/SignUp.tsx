@@ -2,13 +2,21 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { auth, ensureUserProfile } from '../firebase'
 import { createUserWithEmailAndPassword, sendEmailVerification, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { useAuth } from '../context/AuthContext'
 
 export default function SignUp() {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [emailSent, setEmailSent] = useState(false)
   const [emailVerified, setEmailVerified] = useState(false)
   const [message, setMessage] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+
+  // Redirect if already authenticated
+  if (user) {
+    navigate('/account', { replace: true })
+    return null
+  }
 
   const createAccount: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()

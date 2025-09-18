@@ -2,11 +2,19 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { auth, ensureUserProfile } from '../firebase'
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged } from 'firebase/auth'
+import { useAuth } from '../context/AuthContext'
 
 export default function SignIn() {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
+
+  // Redirect if already authenticated
+  if (user) {
+    navigate('/account', { replace: true })
+    return null
+  }
 
   // If already signed in (e.g., Google redirect returned), go to dashboard
   useEffect(() => {

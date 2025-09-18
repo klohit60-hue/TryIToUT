@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { authApi, setToken, clearToken, getToken } from '../lib/api'
-import { auth as fbAuth } from '../firebase'
-import { onAuthStateChanged } from 'firebase/auth'
+import { auth as fbAuth, getUserProfile, ensureUserProfile } from '../firebase'
+import { onAuthStateChanged, signOut as fbSignOut } from 'firebase/auth'
 
 type User = { id: string; email: string; name?: string; plan: 'trial'|'pro'; trialRemaining?: number }
 
@@ -24,9 +24,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (token) {
       authApi.me().then((u) => setUser(u)).finally(() => setLoading(false))
     } else if (fbAuth) {
-      const unsub = onAuthStateChanged(fbAuth, (u) => {
+      const unsub = onAuthStateChanged(fbAuth, async (u) => {
         if (u) {
-          setUser({ id: u.uid, email: u.email || '', name: u.displayName || undefined, plan: 'trial' })
+          // Get user profile from Firebase Firestore
+          const profile = await getUserProfile(u.uid)
+          if (profile) {
+            setUser({ 
+              id: u.uid, 
+              email: u.email || '', 
+              name: u.displayName || undefined, 
+              plan: profile.plan,
+              trialRemaining: profile.trialCredits
+            })
+          } else {
+            // Fallback to basic user info if no profile exists
+            setUser({ 
+              id: u.uid, 
+              email: u.email || '', 
+              name: u.displayName || undefined, 
+              plan: 'trial',
+              trialRemaining: 1
+            })
+          }
         } else if (!getToken()) {
           setUser(null)
         }
@@ -48,7 +67,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setToken(data.token)
     setUser(data.user)
   }
-  const signout = () => { clearToken(); setUser(null) }
+  const signout = async () => { 
+    clearToken()
+    if (fbAuth?.currentUser) {
+      await fbSignOut(fbAuth)
+    }
+    setUser(null) 
+  }
 
   return <Ctx.Provider value={{ user, loading, signin, signup, signout }}>{children}</Ctx.Provider>
 }
