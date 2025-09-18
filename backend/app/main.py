@@ -397,10 +397,18 @@ async def tryon(
 def tryon_options():
     return JSONResponse({})
 
-# SPA routes: serve index.html for client-side routes (must be BEFORE mount at "/")
+# Serve built static files first (for assets like CSS, JS, images)
+try:
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+except Exception:
+    pass
+
+# SPA routes: serve index.html for client-side routes
 @app.get("/app", include_in_schema=False)
 @app.get("/signin", include_in_schema=False)
 @app.get("/signup", include_in_schema=False)
+@app.get("/auth", include_in_schema=False)
+@app.get("/account", include_in_schema=False)
 def spa_pages():
     return FileResponse("static/index.html")
 
@@ -408,10 +416,4 @@ def spa_pages():
 @app.get("/", include_in_schema=False)
 def spa_index():
     return FileResponse("static/index.html")
-
-# Serve built static files at root so "/vite.svg" and preview images resolve
-try:
-    app.mount("/", StaticFiles(directory="static"), name="static")
-except Exception:
-    pass
 
