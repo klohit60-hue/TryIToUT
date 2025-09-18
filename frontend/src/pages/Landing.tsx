@@ -4,10 +4,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 export default function Landing() {
   const slides = useMemo(
     () => [
-      { src: '/landing-preview.png', alt: 'TryItOut.Ai preview' },
-      { src: '/landing-preview-2.png', alt: 'TryItOut.Ai preview 2' },
-      { src: '/landing-preview-3.png', alt: 'TryItOut.Ai preview 3' },
-      { src: '/untitled-design-36.png', alt: 'TryItOut.Ai preview — jacket try-on' },
+      { src: '/static/landing-preview.png', alt: 'TryItOut.Ai preview' },
+      { src: '/static/landing-preview-2.png', alt: 'TryItOut.Ai preview 2' },
+      { src: '/static/landing-preview-3.png', alt: 'TryItOut.Ai preview 3' },
+      { src: '/static/untitled-design-36.png', alt: 'TryItOut.Ai preview — jacket try-on' },
     ],
     []
   )
