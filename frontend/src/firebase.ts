@@ -25,7 +25,9 @@ async function init() {
       try {
         const res = await fetch('/firebase-config.json')
         if (res.ok) cfg = await res.json()
-      } catch (_) {}
+      } catch (err) {
+        console.warn('[Firebase] Failed to fetch config from backend:', err)
+      }
     }
     if (cfg.apiKey && cfg.authDomain && cfg.projectId && cfg.appId) {
       const app = initializeApp(cfg)
@@ -35,6 +37,7 @@ async function init() {
       if (typeof window !== 'undefined') {
         analytics = getAnalytics(app)
       }
+      console.log('[Firebase] Initialized successfully with project:', cfg.projectId)
     } else {
       // eslint-disable-next-line no-console
       console.warn('[Firebase] Missing env config. Skipping init. Set VITE_FIREBASE_* or Heroku config vars')
@@ -62,26 +65,42 @@ export type UserProfile = {
 }
 
 export async function ensureUserProfile(user: { uid: string; email: string | null; displayName?: string | null }) {
-  if (!db) return
-  const ref = doc(db, 'users', user.uid)
-  const snap = await getDoc(ref)
-  if (!snap.exists()) {
-    const profile: UserProfile = {
-      email: user.email || null,
-      displayName: user.displayName ?? null,
-      plan: 'trial',
-      trialCredits: 1, // one free try
-      createdAt: serverTimestamp(),
+  if (!db) {
+    console.warn('[Firebase] Database not initialized')
+    return
+  }
+  try {
+    const ref = doc(db, 'users', user.uid)
+    const snap = await getDoc(ref)
+    if (!snap.exists()) {
+      const profile: UserProfile = {
+        email: user.email || null,
+        displayName: user.displayName ?? null,
+        plan: 'trial',
+        trialCredits: 1, // one free try
+        createdAt: serverTimestamp(),
+      }
+      await setDoc(ref, profile, { merge: true })
+      console.log('[Firebase] User profile created for:', user.uid)
     }
-    await setDoc(ref, profile, { merge: true })
+  } catch (err) {
+    console.error('[Firebase] Failed to ensure user profile:', err)
   }
 }
 
 export async function getUserProfile(uid: string): Promise<UserProfile | null> {
-  if (!db) return null
-  const ref = doc(db, 'users', uid)
-  const snap = await getDoc(ref)
-  return (snap.exists() ? (snap.data() as UserProfile) : null)
+  if (!db) {
+    console.warn('[Firebase] Database not initialized')
+    return null
+  }
+  try {
+    const ref = doc(db, 'users', uid)
+    const snap = await getDoc(ref)
+    return (snap.exists() ? (snap.data() as UserProfile) : null)
+  } catch (err) {
+    console.error('[Firebase] Failed to get user profile:', err)
+    return null
+  }
 }
 
 export async function decrementTrialCredit(uid: string): Promise<number> {
