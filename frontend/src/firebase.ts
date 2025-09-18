@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, RecaptchaVerifier } from 'firebase/auth'
 import { getFirestore, serverTimestamp, doc, getDoc, setDoc, runTransaction } from 'firebase/firestore'
+import { getAnalytics } from 'firebase/analytics'
 
 const viteCfg = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -9,10 +10,12 @@ const viteCfg = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 }
 
 let auth: ReturnType<typeof getAuth> | null = null
 let db: ReturnType<typeof getFirestore> | null = null
+let analytics: ReturnType<typeof getAnalytics> | null = null
 
 async function init() {
   try {
@@ -28,6 +31,10 @@ async function init() {
       const app = initializeApp(cfg)
       auth = getAuth(app)
       db = getFirestore(app)
+      // Initialize analytics only in browser environment
+      if (typeof window !== 'undefined') {
+        analytics = getAnalytics(app)
+      }
     } else {
       // eslint-disable-next-line no-console
       console.warn('[Firebase] Missing env config. Skipping init. Set VITE_FIREBASE_* or Heroku config vars')
@@ -42,6 +49,7 @@ async function init() {
 void init()
 
 export { auth }
+export { analytics }
 export { RecaptchaVerifier }
 
 // Profiles API (client-side convenience)

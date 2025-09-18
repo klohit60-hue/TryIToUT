@@ -1,0 +1,18 @@
+# Heroku Firebase Configuration Commands
+# Replace 'your-app-name' with your actual Heroku app name
+
+heroku config:set FIREBASE_API_KEY="AIzaSyB9cEz5mh9UpeZV6SQxxnQUAG4P9v048RM" --app your-app-name
+heroku config:set FIREBASE_AUTH_DOMAIN="tryitout-ai.firebaseapp.com" --app your-app-name
+heroku config:set FIREBASE_PROJECT_ID="tryitout-ai" --app your-app-name
+heroku config:set FIREBASE_STORAGE_BUCKET="tryitout-ai.firebasestorage.app" --app your-app-name
+heroku config:set FIREBASE_MESSAGING_SENDER_ID="738070047997" --app your-app-name
+heroku config:set FIREBASE_APP_ID="1:738070047997:web:c506496ccc115c29ca2294" --app your-app-name
+heroku config:set FIREBASE_MEASUREMENT_ID="G-75GNMDW62V" --app your-app-name
+
+# Verify the configuration
+heroku config --app your-app-name
+
+# Deploy your app
+git add .
+git commit -m "Add Firebase Heroku configuration"
+git push heroku main
