@@ -278,6 +278,31 @@ def firebase_config():
         "measurementId": os.getenv("FIREBASE_MEASUREMENT_ID"),
     }
 
+# Mock API endpoints for frontend compatibility
+@app.get("/api/profile/me")
+def get_profile():
+    return {"id": "mock-user", "email": "user@example.com", "name": "Mock User", "plan": "trial", "trialRemaining": 1}
+
+@app.get("/api/usage/check")
+def check_usage():
+    return {"remaining": 1, "plan": "trial"}
+
+@app.post("/api/usage/consume")
+def consume_usage():
+    return {"remaining": 0, "plan": "trial"}
+
+@app.post("/api/billing/checkout")
+def billing_checkout():
+    return {"url": "https://stripe.com/checkout"}
+
+@app.post("/api/auth/signup")
+def auth_signup():
+    return {"token": "mock-token", "user": {"id": "mock-user", "email": "user@example.com", "name": "Mock User"}}
+
+@app.post("/api/auth/signin")
+def auth_signin():
+    return {"token": "mock-token", "user": {"id": "mock-user", "email": "user@example.com", "name": "Mock User"}}
+
 
 @app.post("/tryon", response_model=TryOnMultiResponse)
 @app.post("/api/tryon", response_model=TryOnMultiResponse)

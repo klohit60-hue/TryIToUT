@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_NODE_API_BASE || (location.hostname === 'localhost' ? 'http://localhost:4000' : 'https://www.tryitout.ai-node')
+const API_BASE = import.meta.env.VITE_NODE_API_BASE || (location.hostname === 'localhost' ? 'http://localhost:4000' : 'https://www.tryitout.ai')
 
 export function getToken(): string | null {
   return localStorage.getItem('jwt')
