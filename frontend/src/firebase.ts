@@ -77,7 +77,7 @@ export async function ensureUserProfile(user: { uid: string; email: string | nul
                 email: user.email || null,
                 displayName: user.displayName ?? null,
                 plan: 'trial',
-                trialCredits: 5, // five free tries
+                trialCredits: 100, // one hundred free tries
                 createdAt: serverTimestamp(),
               }
       await setDoc(ref, profile, { merge: true })

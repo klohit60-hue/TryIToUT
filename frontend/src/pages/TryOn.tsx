@@ -62,15 +62,15 @@ export default function TryOn() {
         if (profile) {
           setUserCredits(profile.trialCredits)
           setUserPlan(profile.plan)
-        } else {
-          // Fallback to user data from AuthContext
-          setUserCredits(user.trialRemaining || 5)
-          setUserPlan(user.plan)
-        }
+                } else {
+                  // Fallback to user data from AuthContext
+                  setUserCredits(user.trialRemaining || 100)
+                  setUserPlan(user.plan)
+                }
       } catch (err) {
         console.error('Failed to load user credits:', err)
         // Fallback to user data from AuthContext
-        setUserCredits(user.trialRemaining || 5)
+        setUserCredits(user.trialRemaining || 100)
         setUserPlan(user.plan)
       }
     }

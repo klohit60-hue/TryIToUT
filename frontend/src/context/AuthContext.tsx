@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                       email: u.email || '', 
                       name: u.displayName || undefined, 
                       plan: 'trial',
-                      trialRemaining: 5
+                      trialRemaining: 100
                     })
           }
         } else if (!getToken()) {
