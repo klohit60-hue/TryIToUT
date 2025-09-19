@@ -73,13 +73,13 @@ export async function ensureUserProfile(user: { uid: string; email: string | nul
     const ref = doc(db, 'users', user.uid)
     const snap = await getDoc(ref)
     if (!snap.exists()) {
-      const profile: UserProfile = {
-        email: user.email || null,
-        displayName: user.displayName ?? null,
-        plan: 'trial',
-        trialCredits: 1, // one free try
-        createdAt: serverTimestamp(),
-      }
+              const profile: UserProfile = {
+                email: user.email || null,
+                displayName: user.displayName ?? null,
+                plan: 'trial',
+                trialCredits: 5, // five free tries
+                createdAt: serverTimestamp(),
+              }
       await setDoc(ref, profile, { merge: true })
       console.log('[Firebase] User profile created for:', user.uid)
     }

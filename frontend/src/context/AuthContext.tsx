@@ -37,14 +37,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               trialRemaining: profile.trialCredits
             })
           } else {
-            // Fallback to basic user info if no profile exists
-            setUser({ 
-              id: u.uid, 
-              email: u.email || '', 
-              name: u.displayName || undefined, 
-              plan: 'trial',
-              trialRemaining: 1
-            })
+                    // Fallback to basic user info if no profile exists
+                    setUser({ 
+                      id: u.uid, 
+                      email: u.email || '', 
+                      name: u.displayName || undefined, 
+                      plan: 'trial',
+                      trialRemaining: 5
+                    })
           }
         } else if (!getToken()) {
           setUser(null)

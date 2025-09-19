@@ -1,8 +1,8 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
-import { usageApi } from '../lib/api'
+import { getUserProfile, decrementTrialCredit } from '../firebase'
 import UploadArea from '../components/UploadArea'
-import { Download, Share2, RotateCcw } from 'lucide-react'
+import { Download, Share2, RotateCcw, AlertCircle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const BACKGROUNDS = [
@@ -40,22 +40,72 @@ export default function TryOn() {
   const [envLoading, setEnvLoading] = useState(false)
   const [envResults, setEnvResults] = useState<{ background: BackgroundChoice; src: string }[]>([])
   const [selected, setSelected] = useState<BackgroundChoice[]>([])
+  const [userCredits, setUserCredits] = useState<number | null>(null)
+  const [userPlan, setUserPlan] = useState<'trial' | 'pro'>('trial')
 
   const userInputRef = useRef<HTMLInputElement>(null)
   const clothInputRef = useRef<HTMLInputElement>(null)
 
   const canSubmit = useMemo(() => !!userFile && !!clothFile && !isLoading, [userFile, clothFile, isLoading])
 
+  // Load user credits when component mounts or user changes
+  useEffect(() => {
+    const loadUserCredits = async () => {
+      if (!user) {
+        setUserCredits(null)
+        setUserPlan('trial')
+        return
+      }
+
+      try {
+        const profile = await getUserProfile(user.id)
+        if (profile) {
+          setUserCredits(profile.trialCredits)
+          setUserPlan(profile.plan)
+        } else {
+          // Fallback to user data from AuthContext
+          setUserCredits(user.trialRemaining || 5)
+          setUserPlan(user.plan)
+        }
+      } catch (err) {
+        console.error('Failed to load user credits:', err)
+        // Fallback to user data from AuthContext
+        setUserCredits(user.trialRemaining || 5)
+        setUserPlan(user.plan)
+      }
+    }
+
+    loadUserCredits()
+  }, [user])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!userFile || !clothFile) return
-    // Gate by backend usage unless user is pro
+    
+    // Check if user is signed in
     if (!user) {
-      setError('Please sign in to use the trial.')
+      setError('Please sign in to use the try-on feature.')
       return
     }
-    const access = await usageApi.check()
-    if (!access.allowed) { setError('Your free trial is used. Please upgrade in Account to continue.'); return }
+
+    // Check user's credit balance
+    try {
+      const profile = await getUserProfile(user.id)
+      if (!profile) {
+        setError('Unable to load your profile. Please try again.')
+        return
+      }
+
+      // Check if user has credits (trial users) or is pro
+      if (profile.plan === 'trial' && profile.trialCredits <= 0) {
+        setError('You have used all your free credits! Please upgrade to Pro to continue generating images.')
+        return
+      }
+    } catch (err) {
+      setError('Unable to check your credits. Please try again.')
+      return
+    }
+
     setIsLoading(true)
     setError(null)
     try {
@@ -76,7 +126,19 @@ export default function TryOn() {
       const data = (await res.json()) as { images_base64: string[] }
       const imgs = (data.images_base64 || []).map((b64) => `data:image/png;base64,${b64}`)
       setResults((prev) => [...imgs, ...prev])
-      if (access.plan !== 'pro') await usageApi.consume()
+      
+      // Consume credit for trial users only
+      try {
+        const profile = await getUserProfile(user.id)
+        if (profile && profile.plan === 'trial') {
+          await decrementTrialCredit(user.id)
+          // Update local state
+          setUserCredits(prev => prev !== null ? Math.max(0, prev - 1) : 0)
+        }
+      } catch (err) {
+        console.error('Failed to update credits:', err)
+        // Don't show error to user as generation was successful
+      }
     } catch (err: any) {
       setError(err?.message || 'Something went wrong')
     } finally {
@@ -86,6 +148,31 @@ export default function TryOn() {
 
   const handleGenerateSelected = async () => {
     if (!userFile || !clothFile || selected.length === 0) return
+    
+    // Check if user is signed in
+    if (!user) {
+      setError('Please sign in to use the try-on feature.')
+      return
+    }
+
+    // Check user's credit balance for multiple generations
+    try {
+      const profile = await getUserProfile(user.id)
+      if (!profile) {
+        setError('Unable to load your profile. Please try again.')
+        return
+      }
+
+      // Check if user has enough credits for all selected environments
+      if (profile.plan === 'trial' && profile.trialCredits < selected.length) {
+        setError(`You need ${selected.length} credits but only have ${profile.trialCredits} remaining. Please select fewer environments or upgrade to Pro.`)
+        return
+      }
+    } catch (err) {
+      setError('Unable to check your credits. Please try again.')
+      return
+    }
+
     setEnvLoading(true)
     setError(null)
     setEnvResults([])
@@ -112,6 +199,22 @@ export default function TryOn() {
       })
       next.sort((a, b) => (a.background === background ? -1 : b.background === background ? 1 : 0))
       setEnvResults(next)
+
+      // Consume credits for trial users (one credit per successful generation)
+      try {
+        const profile = await getUserProfile(user.id)
+        if (profile && profile.plan === 'trial') {
+          const successfulGenerations = next.length
+          for (let i = 0; i < successfulGenerations; i++) {
+            await decrementTrialCredit(user.id)
+          }
+          // Update local state
+          setUserCredits(prev => prev !== null ? Math.max(0, prev - successfulGenerations) : 0)
+        }
+      } catch (err) {
+        console.error('Failed to update credits:', err)
+        // Don't show error to user as generation was successful
+      }
     } catch (err: any) {
       setError(err?.message || 'Failed to generate environments')
     } finally {
@@ -138,6 +241,44 @@ export default function TryOn() {
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-3xl font-semibold tracking-tight bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">Virtual Try-On</h1>
         </div>
+
+        {/* Credit Display */}
+        {user && (
+          <div className="mb-6 rounded-2xl bg-white p-4 shadow-lg border border-gray-100">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <div className={`h-3 w-3 rounded-full ${userPlan === 'pro' ? 'bg-yellow-500' : 'bg-blue-500'}`}></div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {userPlan === 'pro' ? 'Pro Plan' : 'Trial Plan'}
+                  </span>
+                </div>
+                {userPlan === 'trial' && userCredits !== null && (
+                  <div className="flex items-center space-x-2">
+                    <AlertCircle className="h-4 w-4 text-blue-500" />
+                    <span className="text-sm text-gray-600">
+                      {userCredits} credit{userCredits !== 1 ? 's' : ''} remaining
+                    </span>
+                  </div>
+                )}
+                {userPlan === 'pro' && (
+                  <div className="flex items-center space-x-2">
+                    <AlertCircle className="h-4 w-4 text-yellow-500" />
+                    <span className="text-sm text-gray-600">Unlimited generations</span>
+                  </div>
+                )}
+              </div>
+              {userPlan === 'trial' && userCredits !== null && userCredits <= 2 && (
+                <a 
+                  href="/account" 
+                  className="text-sm font-medium text-purple-600 hover:text-purple-800 transition-colors"
+                >
+                  Upgrade to Pro →
+                </a>
+              )}
+            </div>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="grid gap-6 rounded-2xl bg-white p-6 shadow-lg border border-gray-100">
           <div className="grid gap-2">
