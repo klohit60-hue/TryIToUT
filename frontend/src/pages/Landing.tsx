@@ -84,6 +84,28 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      {/* Contact */}
+      <section id="contact" className="bg-gradient-to-b from-white to-fuchsia-50/40">
+        <div className="mx-auto max-w-6xl px-6 py-14">
+          <div className="rounded-2xl border border-fuchsia-200/60 bg-white p-8 shadow-sm">
+            <h2 className="text-2xl font-semibold bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">
+              Contact
+            </h2>
+            <p className="mt-3 text-gray-600">
+              Have a question, feedback, or partnership idea? We’d love to hear from you.
+            </p>
+            <div className="mt-5">
+              <a
+                href="mailto:tryitoutaiapp@gmail.com"
+                className="inline-flex items-center rounded-lg bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 px-5 py-3 text-sm font-medium text-white shadow hover:opacity-90"
+              >
+                Email us at: tryitoutaiapp@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
