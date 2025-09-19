@@ -85,6 +85,33 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Founder */}
+      <section id="founder" className="bg-gray-50">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent mb-8">
+              Meet Our Founder
+            </h2>
+            <div className="flex flex-col items-center space-y-4">
+              <div className="relative">
+                <img 
+                  src="/static/founder-photo.png" 
+                  alt="Kasimahanti Lohitaksha" 
+                  className="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg"
+                />
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold text-gray-900">Kasimahanti Lohitaksha</h3>
+                <p className="text-lg text-gray-600">Founder & CEO</p>
+                <p className="text-sm text-gray-500 mt-2 max-w-md">
+                  Leading the vision to revolutionize virtual try-on technology and make fashion accessible to everyone.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact */}
       <section id="contact" className="bg-gradient-to-b from-white to-fuchsia-50/40">
         <div className="mx-auto max-w-6xl px-6 py-14">
