@@ -48,7 +48,7 @@ export default function Account() {
             name: user.name || 'User',
             email: user.email,
             plan: user.plan,
-            trialRemaining: user.trialRemaining || 1
+            trialRemaining: user.trialRemaining || 5
           })
         }
       } catch (error) {
@@ -60,7 +60,7 @@ export default function Account() {
             name: user.name || 'User',
             email: user.email,
             plan: user.plan,
-            trialRemaining: user.trialRemaining || 1
+            trialRemaining: user.trialRemaining || 5
           })
         }
       }
@@ -208,7 +208,7 @@ export default function Account() {
                       <span className="text-sm text-gray-600">Total Try-Ons</span>
                     </div>
                     <span className="text-sm font-semibold text-gray-900">
-                      {profile.plan === 'pro' ? '∞' : (1 - (profile.trialRemaining || 0))}
+                      {profile.plan === 'pro' ? '∞' : (5 - (profile.trialRemaining || 0))}
                     </span>
                   </div>
                   
