@@ -141,14 +141,5 @@ export default function Landing() {
   )
 }
 
-function Feature({ icon, title, desc }: { icon: string; title: string; desc: string }) {
-  return (
-    <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-      <div className="text-2xl">{icon}</div>
-      <div className="mt-2 text-base font-medium">{title}</div>
-      <div className="mt-1 text-sm text-gray-600">{desc}</div>
-    </div>
-  )
-}
 
 
