@@ -28,6 +28,32 @@ export default function Landing() {
 
   const go = (dir: -1 | 1) => setIndex((i) => (i + dir + slides.length) % slides.length)
 
+  // Feature slideshow
+  const featureSlides = useMemo(
+    () => [
+      { src: '/static/1.png', alt: 'Privacy First - Your images stay secure' },
+      { src: '/static/2.png', alt: 'Realistic Results - Face, body & proportions preserved' },
+      { src: '/static/3.png', alt: 'Upload Any Outfit - Use any clothing image' },
+      { src: '/static/4.png', alt: 'Fast Processing - Results in seconds' },
+      { src: '/static/5.png', alt: 'Dynamic Backgrounds - Choose your vibe' },
+    ],
+    []
+  )
+  const [featureIndex, setFeatureIndex] = useState(0)
+  const featureTimerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (featureTimerRef.current) window.clearInterval(featureTimerRef.current)
+    featureTimerRef.current = window.setInterval(() => {
+      setFeatureIndex((i) => (i + 1) % featureSlides.length)
+    }, 4000)
+    return () => {
+      if (featureTimerRef.current) window.clearInterval(featureTimerRef.current)
+    }
+  }, [featureSlides.length])
+
+  const goFeature = (dir: -1 | 1) => setFeatureIndex((i) => (i + dir + featureSlides.length) % featureSlides.length)
+
   return (
     <div>
       <section className="bg-gradient-to-b from-pink-50 via-violet-50 to-cyan-50">
@@ -85,6 +111,29 @@ export default function Landing() {
             <p className="text-lg text-gray-700 leading-relaxed">
               We use advanced AI to let shoppers virtually "try on" outfits before making a purchase. By uploading a photo, users can instantly see how an outfit would look on their own body, in their own proportions — not on a model who may look completely different.
             </p>
+          </div>
+          
+          {/* Feature Slideshow */}
+          <div className="mt-12">
+            <div className="relative">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+                <div
+                  className="absolute inset-0 flex transition-transform duration-500"
+                  style={{ transform: `translateX(-${featureIndex * 100}%)` }}
+                >
+                  {featureSlides.map((slide, i) => (
+                    <img key={i} src={slide.src} alt={slide.alt} className="h-full w-full shrink-0 grow-0 basis-full object-cover" />
+                  ))}
+                </div>
+                <button aria-label="Previous" onClick={() => goFeature(-1)} className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-2 py-1 text-sm shadow hover:bg-white">‹</button>
+                <button aria-label="Next" onClick={() => goFeature(1)} className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-2 py-1 text-sm shadow hover:bg-white">›</button>
+                <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
+                  {featureSlides.map((_, i) => (
+                    <span key={i} className={`h-1.5 w-1.5 rounded-full ${i === featureIndex ? 'bg-fuchsia-600' : 'bg-gray-300'}`}></span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
