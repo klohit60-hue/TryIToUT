@@ -311,7 +311,8 @@ async def tryon(
     clothing_image: UploadFile = File(...),
     background: Literal[
         "Plain White", "Library", "Party", "Beach", "Office",
-        "Street", "Bedroom", "Living Room", "Cafe", "Park", "Studio Gray"
+        "Street", "Bedroom", "Living Room", "Cafe", "Park", "Studio Gray",
+        "Gym", "Beach Party", "Destination Wedding"
     ] = Form(...),
     variants: int = Form(1),
 ):
