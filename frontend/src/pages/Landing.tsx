@@ -75,13 +75,16 @@ export default function Landing() {
       <section id="features" className="bg-white">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <h2 className="text-2xl font-semibold bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">Why TryItOut.Ai?</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-            <Feature icon="✨" title="Realistic results" desc="Face, body and proportions are preserved. Natural shadows retained." />
-            <Feature icon="🧥" title="Upload any top" desc="Use any clothing image — T-shirts, shirts, hoodies and more." />
-            <Feature icon="🌆" title="Backgrounds" desc="Pick from many environments to match your vibe." />
-            <Feature icon="⚡" title="Fast" desc="Generate results in seconds with our optimized pipeline." />
-            <Feature icon="🔒" title="Private" desc="Images are processed just for your session and can be deleted." />
-            <Feature icon="⬇️" title="Download & share" desc="Save your results or share them right from the gallery." />
+          <div className="mt-8 max-w-4xl">
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Shopping for clothes online often comes with uncertainty — Will this outfit really suit me? Will the size or style look right on my body? These doubts are one of the biggest reasons why customers hesitate to buy and why returns remain so high in fashion e-commerce.
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              <strong className="text-gray-900">TryItOut.Ai solves this problem.</strong>
+            </p>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              We use advanced AI to let shoppers virtually "try on" outfits before making a purchase. By uploading a photo, users can instantly see how an outfit would look on their own body, in their own proportions — not on a model who may look completely different.
+            </p>
           </div>
         </div>
       </section>
