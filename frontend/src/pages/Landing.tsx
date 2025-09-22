@@ -114,9 +114,9 @@ export default function Landing() {
           </div>
           
           {/* Feature Slideshow */}
-          <div className="mt-12">
+          <div className="mt-12 max-w-4xl mx-auto">
             <div className="relative">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
+              <div className="relative aspect-[3/2] overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                 <div
                   className="absolute inset-0 flex transition-transform duration-500"
                   style={{ transform: `translateX(-${featureIndex * 100}%)` }}
