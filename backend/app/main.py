@@ -312,7 +312,7 @@ async def tryon(
     background: Literal[
         "Plain White", "Library", "Party", "Beach", "Office",
         "Street", "Bedroom", "Living Room", "Cafe", "Park", "Studio Gray",
-        "Gym", "Beach Party", "Destination Wedding"
+        "Gym", "Beach Party", "Destination Wedding", "Photoshoot"
     ] = Form(...),
     variants: int = Form(1),
 ):

@@ -20,6 +20,7 @@ const BACKGROUNDS = [
   'Gym',
   'Beach Party',
   'Destination Wedding',
+  'Photoshoot',
 ] as const
 
 type BackgroundChoice = typeof BACKGROUNDS[number]
