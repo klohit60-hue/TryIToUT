@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useMemo, useRef, useState } from 'react'
 
 export default function Landing() {
   return (
