@@ -181,10 +181,10 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <div className="w-8 h-8 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">T</span>
+                <div className="w-12 h-12 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-2xl">T</span>
                 </div>
-                <span className="ml-2 text-xl font-bold">TryItOut.Ai</span>
+                <span className="ml-3 text-2xl font-bold">TryItOut.Ai</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
                 TryItOut.Ai utilizes advanced AI to enhance your fashion experience by providing realistic virtual try-on technology. 
