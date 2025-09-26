@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-fuchsia-200/60 bg-white/75 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-        <Link to="/" className="text-sm font-semibold bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">
+        <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 bg-clip-text text-transparent">
           TryItOut.Ai
         </Link>
         <nav className="flex items-center gap-4 text-sm">
