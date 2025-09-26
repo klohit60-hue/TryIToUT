@@ -1,6 +1,33 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 export default function Landing() {
+  const slides = useMemo(
+    () => [
+      { src: '/static/landing-preview.png', alt: 'TryItOut.Ai preview' },
+      { src: '/static/landing-preview-2.png', alt: 'TryItOut.Ai preview 2' },
+      { src: '/static/landing-preview-3.png', alt: 'TryItOut.Ai preview 3' },
+      { src: '/static/untitled-design-36.png', alt: 'TryItOut.Ai preview — jacket try-on' },
+      { src: '/static/Untitled design (41).png', alt: 'TryItOut.Ai preview — new design' },
+      { src: '/static/Untitled design (44).png', alt: 'TryItOut.Ai preview — latest design' },
+    ],
+    []
+  )
+  const [index, setIndex] = useState(0)
+  const timerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (timerRef.current) window.clearInterval(timerRef.current)
+    timerRef.current = window.setInterval(() => {
+      setIndex((i) => (i + 1) % slides.length)
+    }, 3500)
+    return () => {
+      if (timerRef.current) window.clearInterval(timerRef.current)
+    }
+  }, [slides.length])
+
+  const go = (dir: -1 | 1) => setIndex((i) => (i + dir + slides.length) % slides.length)
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -60,12 +87,22 @@ export default function Landing() {
               </div>
             </div>
             <div className="relative">
-              <div className="relative">
-                <img 
-                  src="/static/landing-preview.png" 
-                  alt="TryItOut.Ai virtual try-on example" 
-                  className="w-full h-auto rounded-2xl shadow-2xl"
-                />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-2xl">
+                <div
+                  className="absolute inset-0 flex transition-transform duration-500"
+                  style={{ transform: `translateX(-${index * 100}%)` }}
+                >
+                  {slides.map((s, i) => (
+                    <img key={i} src={s.src} alt={s.alt} className="h-full w-full shrink-0 grow-0 basis-full object-cover" />
+                  ))}
+                </div>
+                <button aria-label="Previous" onClick={() => go(-1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white transition-colors">‹</button>
+                <button aria-label="Next" onClick={() => go(1)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white transition-colors">›</button>
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+                  {slides.map((_, i) => (
+                    <span key={i} className={`h-2 w-2 rounded-full transition-colors ${i === index ? 'bg-white' : 'bg-white/50'}`}></span>
+                  ))}
+                </div>
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600">Created with TryItOut.Ai</span>
                 </div>
