@@ -15,7 +15,7 @@ export default function Navbar() {
           <NavLink 
             to="/" 
             className={({ isActive }) => 
-              `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              `px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 ${
                 isActive 
                   ? 'bg-gradient-to-r from-fuchsia-100 to-rose-100 text-fuchsia-700 shadow-sm' 
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -27,7 +27,7 @@ export default function Navbar() {
           <NavLink 
             to="/app" 
             className={({ isActive }) => 
-              `px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+              `px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 ${
                 isActive 
                   ? 'bg-gradient-to-r from-fuchsia-100 to-rose-100 text-fuchsia-700 shadow-sm' 
                   : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -36,11 +36,11 @@ export default function Navbar() {
           >
             App
           </NavLink>
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200">
+          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200">
             <Info className="h-4 w-4"/> 
             About
           </button>
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200">
+          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all duration-200">
             <HelpCircle className="h-4 w-4"/> 
             Help
           </button>
@@ -50,7 +50,7 @@ export default function Navbar() {
               <NavLink 
                 to="/account" 
                 className={({ isActive }) => 
-                  `inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  `inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 ${
                     isActive 
                       ? 'bg-gradient-to-r from-fuchsia-100 to-rose-100 text-fuchsia-700 shadow-sm' 
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
@@ -62,7 +62,7 @@ export default function Navbar() {
               </NavLink>
               <button 
                 onClick={signout}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 transition-all duration-200"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-50 transition-all duration-200"
               >
                 <LogOut className="h-4 w-4"/> 
                 Sign Out
@@ -72,7 +72,7 @@ export default function Navbar() {
             <NavLink 
               to="/auth" 
               className={({ isActive }) => 
-                `inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                `inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-200 ${
                   isActive 
                     ? 'bg-gradient-to-r from-fuchsia-100 to-rose-100 text-fuchsia-700 shadow-sm' 
                     : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
