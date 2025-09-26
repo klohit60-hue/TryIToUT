@@ -30,27 +30,6 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 flex items-center">
-                <div className="w-16 h-16 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-3xl">T</span>
-                </div>
-                <span className="ml-4 text-3xl font-bold text-gray-900">TryItOut.Ai</span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-6">
-              <Link to="/auth" className="text-gray-600 hover:text-gray-900 px-4 py-2 text-lg font-medium">Login</Link>
-              <Link to="/app" className="bg-gray-900 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-gray-800 transition-colors">
-                Try Now
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-pink-50 via-purple-50 to-cyan-50 py-20">
@@ -205,7 +184,7 @@ export default function Landing() {
                 <div className="w-12 h-12 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-2xl">T</span>
                 </div>
-                <span className="ml-3 text-2xl font-bold">TryItOut.Ai</span>
+                <span className="ml-3 text-4xl font-bold">TryItOut.Ai</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
                 TryItOut.Ai utilizes advanced AI to enhance your fashion experience by providing realistic virtual try-on technology. 
