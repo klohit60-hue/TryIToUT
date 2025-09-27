@@ -78,8 +78,6 @@ export default function Landing() {
                           <span className="text-sm text-gray-600 dark:text-gray-300">Created with TryItOut.Ai</span>
                         </div>
               </div>
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full"></div>
-              <div className="absolute -top-4 -right-4 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
             </div>
           </div>
         </div>
