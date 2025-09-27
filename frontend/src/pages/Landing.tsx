@@ -85,21 +85,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Trusted by Section */}
-      <section className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-12">Trusted by thousands of fashion enthusiasts</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center opacity-60">
-            <div className="text-gray-400 font-semibold text-sm">FASHION BRAND</div>
-            <div className="text-gray-400 font-semibold text-sm">STYLE CO.</div>
-            <div className="text-gray-400 font-semibold text-sm">TREND SETTER</div>
-            <div className="text-gray-400 font-semibold text-sm">FASHION HUB</div>
-            <div className="text-gray-400 font-semibold text-sm">STYLE LAB</div>
-            <div className="text-gray-400 font-semibold text-sm">FASHION AI</div>
-          </div>
-        </div>
-      </section>
-
       {/* How It Works Section */}
       <section id="how-it-works" className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
