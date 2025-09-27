@@ -29,30 +29,30 @@ export default function Landing() {
   const go = (dir: -1 | 1) => setIndex((i) => (i + dir + slides.length) % slides.length)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-pink-50 via-purple-50 to-cyan-50 py-20">
+      <section className="bg-gradient-to-br from-pink-50 via-purple-50 to-cyan-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
                 Create <span className="italic">stunning</span> virtual try-on photos with AI
               </h1>
-              <p className="mt-6 text-xl text-gray-600 leading-relaxed">
+              <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
                 TryItOut.Ai is perfect for fashion brands and individuals that value quality, speed, and flexibility. 
                 See how clothes look on you at a fraction of the cost.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Link to="/app" className="bg-gray-900 text-white px-8 py-4 rounded-lg text-lg font-medium hover:bg-gray-800 transition-colors text-center">
+                <Link to="/app" className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 rounded-lg text-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-center">
                   Try Now
                 </Link>
                 <div className="flex items-center justify-center sm:justify-start">
-                  <div className="bg-white border border-green-200 rounded-lg px-4 py-2 flex items-center">
+                  <div className="bg-white dark:bg-gray-800 border border-green-200 dark:border-green-700 rounded-lg px-4 py-2 flex items-center">
                     <div className="w-6 h-6 bg-green-500 rounded flex items-center justify-center mr-2">
                       <span className="text-white text-xs font-bold">✓</span>
                     </div>
-                    <span className="text-sm font-medium text-gray-700">100 Free Credits</span>
+                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">100 Free Credits</span>
                   </div>
                 </div>
               </div>
@@ -67,16 +67,16 @@ export default function Landing() {
                     <img key={i} src={s.src} alt={s.alt} className="h-full w-full shrink-0 grow-0 basis-full object-cover" />
                   ))}
                 </div>
-                <button aria-label="Previous" onClick={() => go(-1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white transition-colors">‹</button>
-                <button aria-label="Next" onClick={() => go(1)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 px-3 py-2 text-sm shadow hover:bg-white transition-colors">›</button>
+                        <button aria-label="Previous" onClick={() => go(-1)} className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 dark:bg-gray-800/80 px-3 py-2 text-sm shadow hover:bg-white dark:hover:bg-gray-800 transition-colors">‹</button>
+                        <button aria-label="Next" onClick={() => go(1)} className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/80 dark:bg-gray-800/80 px-3 py-2 text-sm shadow hover:bg-white dark:hover:bg-gray-800 transition-colors">›</button>
                 <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
                   {slides.map((_, i) => (
                     <span key={i} className={`h-2 w-2 rounded-full transition-colors ${i === index ? 'bg-white' : 'bg-white/50'}`}></span>
                   ))}
                 </div>
-                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-                  <span className="text-sm text-gray-600">Created with TryItOut.Ai</span>
-                </div>
+                        <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-lg px-3 py-2">
+                          <span className="text-sm text-gray-600 dark:text-gray-300">Created with TryItOut.Ai</span>
+                        </div>
               </div>
               <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full"></div>
               <div className="absolute -top-4 -right-4 w-6 h-6 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full"></div>
@@ -86,11 +86,11 @@ export default function Landing() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="bg-white py-20">
+      <section id="how-it-works" className="bg-white dark:bg-gray-900 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">How TryItOut.Ai works</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">How TryItOut.Ai works</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
               No creative skills required - just a few clicks and you've got realistic stunning photos. 
               Experience the magic of TryItOut.Ai's AI-powered virtual try-on today.
             </p>
@@ -101,31 +101,31 @@ export default function Landing() {
               <div className="w-16 h-16 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white text-2xl font-bold">1</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Upload</h3>
-              <p className="text-gray-600">Upload your photo and the clothing image you want to try on</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Upload</h3>
+              <p className="text-gray-600 dark:text-gray-300">Upload your photo and the clothing image you want to try on</p>
             </div>
             
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white text-2xl font-bold">2</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Transform</h3>
-              <p className="text-gray-600">Select your preferred background and let our AI work its magic</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Transform</h3>
+              <p className="text-gray-600 dark:text-gray-300">Select your preferred background and let our AI work its magic</p>
             </div>
             
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
                 <span className="text-white text-2xl font-bold">3</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Share</h3>
-              <p className="text-gray-600">Download and share your virtual try-on photos on social media</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Share</h3>
+              <p className="text-gray-600 dark:text-gray-300">Download and share your virtual try-on photos on social media</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Customer Achievements Section */}
-      <section className="bg-gray-900 py-20">
+      <section className="bg-gray-900 dark:bg-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">With TryItOut.Ai's virtual try-on, our users achieve</h2>
@@ -161,7 +161,7 @@ export default function Landing() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-gray-900 dark:bg-gray-800 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
@@ -171,26 +171,26 @@ export default function Landing() {
                 </div>
                 <span className="ml-3 text-4xl font-bold">TryItOut.Ai</span>
               </div>
-              <p className="text-gray-400 leading-relaxed">
-                TryItOut.Ai utilizes advanced AI to enhance your fashion experience by providing realistic virtual try-on technology. 
-                This technology helps you make confident purchasing decisions and explore new styles without the hassle of returns.
-              </p>
+                      <p className="text-gray-400 dark:text-gray-300 leading-relaxed">
+                        TryItOut.Ai utilizes advanced AI to enhance your fashion experience by providing realistic virtual try-on technology. 
+                        This technology helps you make confident purchasing decisions and explore new styles without the hassle of returns.
+                      </p>
             </div>
             
             <div>
               <h3 className="text-lg font-semibold mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#features" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors">How it Works</a></li>
-                <li><a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Support</h3>
-              <ul className="space-y-2">
-                <li><a href="mailto:tryitoutaiapp@gmail.com" className="text-gray-400 hover:text-white transition-colors">Talk to support</a></li>
-                <li><a href="mailto:tryitoutaiapp@gmail.com" className="text-gray-400 hover:text-white transition-colors">Send us a message</a></li>
+                        <li><a href="#features" className="text-gray-400 dark:text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#how-it-works" className="text-gray-400 dark:text-gray-300 hover:text-white transition-colors">How it Works</a></li>
+                        <li><a href="#contact" className="text-gray-400 dark:text-gray-300 hover:text-white transition-colors">Contact</a></li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold mb-4">Support</h3>
+                      <ul className="space-y-2">
+                        <li><a href="mailto:tryitoutaiapp@gmail.com" className="text-gray-400 dark:text-gray-300 hover:text-white transition-colors">Talk to support</a></li>
+                        <li><a href="mailto:tryitoutaiapp@gmail.com" className="text-gray-400 dark:text-gray-300 hover:text-white transition-colors">Send us a message</a></li>
               </ul>
               <div className="flex space-x-4 mt-6">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -217,17 +217,17 @@ export default function Landing() {
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-12 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-gray-400 text-sm">
-                © 2025 TryItOut.Ai, all rights reserved.
-              </p>
-              <div className="flex space-x-6 mt-4 md:mt-0">
-                <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Terms of service</a>
-                <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy policy</a>
-              </div>
-            </div>
-          </div>
+                      <div className="border-t border-gray-800 dark:border-gray-700 mt-12 pt-8">
+                        <div className="flex flex-col md:flex-row justify-between items-center">
+                          <p className="text-gray-400 dark:text-gray-300 text-sm">
+                            © 2025 TryItOut.Ai, all rights reserved.
+                          </p>
+                          <div className="flex space-x-6 mt-4 md:mt-0">
+                            <a href="#" className="text-gray-400 dark:text-gray-300 hover:text-white text-sm transition-colors">Terms of service</a>
+                            <a href="#" className="text-gray-400 dark:text-gray-300 hover:text-white text-sm transition-colors">Privacy policy</a>
+                          </div>
+                        </div>
+                      </div>
         </div>
       </footer>
     </div>

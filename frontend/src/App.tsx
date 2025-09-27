@@ -6,28 +6,31 @@ import TryOn from './pages/TryOn'
 import Account from './pages/Account'
 import AuthPage from './pages/AuthPage'
 import { AuthProvider, useAuth } from './context/AuthContext'
+import { ThemeProvider } from './context/ThemeContext'
 import { auth as fbAuth } from './firebase'
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/auth" element={<AuthPage />} />
-            <Route path="/app" element={<TryOn />} />
-            <Route path="/account" element={<Protected><Account /></Protected>} />
-            {/* Redirect old auth routes to new unified page */}
-            <Route path="/signin" element={<Navigate to="/auth" replace />} />
-            <Route path="/signup" element={<Navigate to="/auth" replace />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/auth" element={<AuthPage />} />
+              <Route path="/app" element={<TryOn />} />
+              <Route path="/account" element={<Protected><Account /></Protected>} />
+              {/* Redirect old auth routes to new unified page */}
+              <Route path="/signin" element={<Navigate to="/auth" replace />} />
+              <Route path="/signup" element={<Navigate to="/auth" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </AuthProvider>
+    </ThemeProvider>
   )
 }
 
