@@ -158,10 +158,10 @@ export default function Landing() {
                 <p className="text-gray-600 dark:text-gray-300">See the difference in quality and speed</p>
               </div>
               
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 <div className="text-center">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">TryItOut.Ai</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">TryItOut.Ai</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
                       <img 
                         src="/static/tryitout-result.png" 
@@ -172,13 +172,13 @@ export default function Landing() {
                   </div>
                   <div className="mt-3 flex items-center justify-center">
                     <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                    <span className="text-sm font-medium text-green-600 dark:text-green-400">20 seconds</span>
+                    <span className="text-base font-medium text-green-600 dark:text-green-400">20 seconds</span>
                   </div>
                 </div>
                 
                 <div className="text-center">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">vs. Chat GPT</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">vs. Chat GPT</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
                       <img 
                         src="/static/chatgpt-result.png" 
@@ -189,13 +189,13 @@ export default function Landing() {
                   </div>
                   <div className="mt-3 flex items-center justify-center">
                     <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                    <span className="text-sm font-medium text-yellow-600 dark:text-yellow-400">Variable</span>
+                    <span className="text-base font-medium text-yellow-600 dark:text-yellow-400">4 minutes</span>
                   </div>
                 </div>
                 
                 <div className="text-center">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">vs. Gemini</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">vs. Gemini</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
                       <img 
                         src="/static/gemini-result.png" 
@@ -206,13 +206,13 @@ export default function Landing() {
                   </div>
                   <div className="mt-3 flex items-center justify-center">
                     <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
-                    <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Variable</span>
+                    <span className="text-base font-medium text-blue-600 dark:text-blue-400">2 minutes</span>
                   </div>
                 </div>
                 
                 <div className="text-center">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Botika</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">vs. Botika</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
                       <img 
                         src="/static/botika-result.png" 
@@ -223,7 +223,7 @@ export default function Landing() {
                   </div>
                   <div className="mt-3 flex items-center justify-center">
                     <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
-                    <span className="text-sm font-medium text-red-600 dark:text-red-400">8 minutes</span>
+                    <span className="text-base font-medium text-red-600 dark:text-red-400">8 minutes</span>
                   </div>
                 </div>
               </div>
