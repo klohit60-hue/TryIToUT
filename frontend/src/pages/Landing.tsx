@@ -283,6 +283,100 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* First Ever Sequential Try-Ons Section */}
+      <section className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">First Ever Sequential Try-Ons</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Experience the future of virtual fashion with step-by-step outfit customization
+            </p>
+          </div>
+          
+          <div className="flex flex-col items-center space-y-8">
+            {/* Sequential Try-On Flow */}
+            <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+              {/* Face Image */}
+              <div className="text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                  <div className="aspect-square w-48 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">Face Image</p>
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Start with your photo</p>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex items-center">
+                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+
+              {/* Step 01 */}
+              <div className="text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                    <img 
+                      src="/static/step01.png" 
+                      alt="Step 1: First outfit try-on" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Step 1: First outfit</p>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex items-center">
+                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+
+              {/* Step 02 */}
+              <div className="text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                    <img 
+                      src="/static/step02.png" 
+                      alt="Step 2: Second outfit try-on" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Step 2: Mix & match</p>
+              </div>
+            </div>
+
+            {/* Disclaimer */}
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-indigo-100 dark:border-indigo-900/50">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  With TryItOut.Ai, for the first time customize full look step by step
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Now mix & match different outfits to create that cool look! 
+                  Build your perfect ensemble piece by piece with our revolutionary sequential try-on technology.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <Link to="/app" className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-lg">
+                    Try Sequential Try-Ons
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Customer Achievements Section */}
       <section className="bg-gray-900 dark:bg-gray-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
