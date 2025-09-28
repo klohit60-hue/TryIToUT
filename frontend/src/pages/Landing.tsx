@@ -299,15 +299,12 @@ export default function Landing() {
               {/* Face Image */}
               <div className="text-center">
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <div className="aspect-square w-48 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                      </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Face Image</p>
-                    </div>
+                  <div className="aspect-square w-48 rounded-xl overflow-hidden">
+                    <img 
+                      src="/static/face01.png" 
+                      alt="Face image for sequential try-on" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
                 <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Start with your photo</p>
