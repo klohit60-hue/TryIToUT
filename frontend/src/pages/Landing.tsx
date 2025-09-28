@@ -317,6 +317,27 @@ export default function Landing() {
                 </svg>
               </div>
 
+              {/* Shirt */}
+              <div className="text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                    <img 
+                      src="/static/shirt.png" 
+                      alt="Shirt for try-on" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Add shirt</p>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex items-center">
+                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+
               {/* Step 01 */}
               <div className="text-center">
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
@@ -329,6 +350,27 @@ export default function Landing() {
                   </div>
                 </div>
                 <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Step 1: First outfit</p>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex items-center">
+                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+
+              {/* Jacket */}
+              <div className="text-center">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
+                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                    <img 
+                      src="/static/jacket.jpeg" 
+                      alt="Jacket for layering" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Add jacket</p>
               </div>
 
               {/* Arrow */}
