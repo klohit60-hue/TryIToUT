@@ -37,7 +37,7 @@ export default function Landing() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                <span className="block">Try it before you buy it!</span>
+                <span className="block italic whitespace-nowrap">Try it before you buy it!</span>
                 <span className="block italic">with TryItOut.Ai</span>
               </h1>
               <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
