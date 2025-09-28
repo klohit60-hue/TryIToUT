@@ -139,7 +139,7 @@ export default function Landing() {
                 </div>
                 
                 <div className="text-center">
-                  <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">vs. Chat GPT</h4>
+                  <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Chat GPT</h4>
                   <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                       <img 
@@ -156,7 +156,7 @@ export default function Landing() {
                 </div>
                 
                 <div className="text-center">
-                  <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">vs. Gemini</h4>
+                  <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Gemini Nano Banana</h4>
                   <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                       <img 
@@ -173,7 +173,7 @@ export default function Landing() {
                 </div>
                 
                 <div className="text-center">
-                  <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">vs. Botika</h4>
+                  <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Botika</h4>
                   <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                       <img 
