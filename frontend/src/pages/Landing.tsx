@@ -123,12 +123,12 @@ export default function Landing() {
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-12 max-w-none">
                 <div className="text-center">
                   <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">TryItOut.Ai</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                       <img 
                         src="/static/tryitout-result.png" 
                         alt="TryItOut.Ai virtual try-on result" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       />
                     </div>
                   </div>
@@ -140,12 +140,12 @@ export default function Landing() {
                 
                 <div className="text-center">
                   <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Chat GPT</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                       <img 
                         src="/static/chatgpt-result.png" 
                         alt="ChatGPT virtual try-on result" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       />
                     </div>
                   </div>
@@ -157,12 +157,12 @@ export default function Landing() {
                 
                 <div className="text-center">
                   <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Gemini Nano Banana</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                       <img 
                         src="/static/gemini-result.png" 
                         alt="Gemini virtual try-on result" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       />
                     </div>
                   </div>
@@ -174,12 +174,12 @@ export default function Landing() {
                 
                 <div className="text-center">
                   <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Botika</h4>
-                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
                     <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
                       <img 
                         src="/static/botika-result.png" 
                         alt="Botika virtual try-on result" 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                       />
                     </div>
                   </div>
