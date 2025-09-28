@@ -137,6 +137,23 @@ export default function Landing() {
             {/* Comparison Images */}
             <div className="space-y-6">
               <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Source Materials</h3>
+                <p className="text-gray-600 dark:text-gray-300">Clothing and model used for the comparison</p>
+              </div>
+              
+              <div className="mb-8">
+                <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                  <div className="aspect-[16/9] rounded-xl overflow-hidden shadow-lg">
+                    <img 
+                      src="/static/clothing-model-reference.png" 
+                      alt="Clothing and model reference from Botika" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-center mb-8">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Side-by-Side Comparison</h3>
                 <p className="text-gray-600 dark:text-gray-300">See the difference in quality and speed</p>
               </div>
