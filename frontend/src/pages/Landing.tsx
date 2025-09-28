@@ -134,15 +134,13 @@ export default function Landing() {
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Comparison Images */}
-            <div className="space-y-6">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Source Materials</h3>
-                <p className="text-gray-600 dark:text-gray-300">Clothing and model used for the comparison</p>
-              </div>
+            {/* Source Materials - Centered */}
+            <div className="text-center mb-16">
+              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Source Materials</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Clothing and model used for the comparison</p>
               
-              <div className="mb-8">
-                <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6">
                   <div className="aspect-[16/9] rounded-xl overflow-hidden shadow-lg">
                     <img 
                       src="/static/clothing-model-reference.png" 
@@ -152,13 +150,14 @@ export default function Landing() {
                   </div>
                 </div>
               </div>
+            </div>
+            
+            {/* Side-by-Side Comparison - Full Width */}
+            <div className="text-center mb-16">
+              <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Side-by-Side Comparison</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-12">See the difference in quality and speed</p>
               
-              <div className="text-center mb-12">
-                <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Side-by-Side Comparison</h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300">See the difference in quality and speed</p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-12 max-w-none">
                 <div className="text-center">
                   <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">TryItOut.Ai</h4>
                   <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8">
@@ -228,84 +227,73 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-            
-            {/* Comparison Points */}
-            <div className="space-y-8">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
+          </div>
+          
+          {/* Comparison Points - Horizontal Below */}
+          <div className="mt-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">24x Faster Generation</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    TryItOut.Ai generates results in under <span className="font-semibold text-green-600 dark:text-green-400">20 seconds</span>, 
-                    compared to Botika's <span className="font-semibold text-gray-600 dark:text-gray-400">8 minutes</span>. 
-                    That's <span className="font-bold text-green-600 dark:text-green-400">24 times faster</span> than the competition.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Superior Technical Merging</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Our AI delivers <span className="font-semibold text-blue-600 dark:text-blue-400">seamless integration</span> with accurate body alignment, 
-                    realistic shadows, and natural posture. Perfect skin tone transitions and garment placement 
-                    create <span className="font-bold text-blue-600 dark:text-blue-400">convincing, consistent results</span> every time.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Perfect Color & Texture Preservation</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Unlike competitors where garment colors change and textures become inconsistent, 
-                    TryItOut.Ai preserves the <span className="font-semibold text-purple-600 dark:text-purple-400">exact look, feel, and color fidelity</span> 
-                    of your clothing with <span className="font-bold text-purple-600 dark:text-purple-400">hyper-accurate detail reproduction</span>.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Professional-Grade Accuracy</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Our solution eliminates inconsistencies where clothing meets the body and environment. 
-                    No post-processing needed - we deliver <span className="font-semibold text-orange-600 dark:text-orange-400">production-ready results</span> 
-                    with natural lighting and realistic integration for <span className="font-bold text-orange-600 dark:text-orange-400">professional applications</span>.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-r from-fuchsia-50 to-cyan-50 dark:from-fuchsia-900/20 dark:to-cyan-900/20 rounded-2xl p-6">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">The Bottom Line</h4>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">24x Faster Generation</h3>
                 <p className="text-gray-600 dark:text-gray-300">
+                  TryItOut.Ai generates results in under <span className="font-semibold text-green-600 dark:text-green-400">20 seconds</span>, 
+                  compared to Botika's <span className="font-semibold text-gray-600 dark:text-gray-400">8 minutes</span>. 
+                  That's <span className="font-bold text-green-600 dark:text-green-400">24 times faster</span> than the competition.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Superior Technical Merging</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Our AI delivers <span className="font-semibold text-blue-600 dark:text-blue-400">seamless integration</span> with accurate body alignment, 
+                  realistic shadows, and natural posture. Perfect skin tone transitions and garment placement 
+                  create <span className="font-bold text-blue-600 dark:text-blue-400">convincing, consistent results</span> every time.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Perfect Color & Texture Preservation</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Unlike competitors where garment colors change and textures become inconsistent, 
+                  TryItOut.Ai preserves the <span className="font-semibold text-purple-600 dark:text-purple-400">exact look, feel, and color fidelity</span> 
+                  of your clothing with <span className="font-bold text-purple-600 dark:text-purple-400">hyper-accurate detail reproduction</span>.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Professional-Grade Accuracy</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  Our solution eliminates inconsistencies where clothing meets the body and environment. 
+                  No post-processing needed - we deliver <span className="font-semibold text-orange-600 dark:text-orange-400">production-ready results</span> 
+                  with natural lighting and realistic integration for <span className="font-bold text-orange-600 dark:text-orange-400">professional applications</span>.
+                </p>
+              </div>
+            </div>
+            
+            {/* The Bottom Line - Full Width */}
+            <div className="mt-12">
+              <div className="bg-gradient-to-r from-fuchsia-50 to-cyan-50 dark:from-fuchsia-900/20 dark:to-cyan-900/20 rounded-2xl p-8 text-center">
+                <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">The Bottom Line</h4>
+                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
                   TryItOut.Ai delivers superior technical merging with seamless integration, perfect color preservation, 
                   and professional-grade accuracy. While competitors may offer appealing lifestyle contexts, 
                   our solution excels in <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">seamlessness, speed, and consistency</span> - 
