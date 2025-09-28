@@ -139,7 +139,7 @@ export default function Landing() {
             <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Source Materials</h3>
             <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">Clothing and model used for the comparison</p>
             
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-2xl mx-auto">
               <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-6">
                 <div className="aspect-[16/9] rounded-xl overflow-hidden shadow-lg">
                   <img 
