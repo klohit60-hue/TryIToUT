@@ -467,6 +467,7 @@ export default function Landing() {
                       <ul className="space-y-2">
                         <li><a href="mailto:tryitoutaiapp@gmail.com" className="text-gray-400 dark:text-gray-300 hover:text-white transition-colors">Talk to support</a></li>
                         <li><a href="mailto:tryitoutaiapp@gmail.com" className="text-gray-400 dark:text-gray-300 hover:text-white transition-colors">Send us a message</a></li>
+                        <li><a href="mailto:tryitoutaiapp@gmail.com" className="text-gray-300 dark:text-gray-200 hover:text-white transition-colors">tryitoutaiapp@gmail.com</a></li>
               </ul>
               <div className="flex space-x-4 mt-6">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
