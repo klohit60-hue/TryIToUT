@@ -37,11 +37,11 @@ export default function Landing() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                Create <span className="italic">stunning</span> virtual try-on photos with AI
+                Try it before you buy it with Tryitout.ai
               </h1>
               <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                TryItOut.Ai is perfect for fashion brands and individuals that value quality, speed, and flexibility. 
-                See how clothes look on you at a fraction of the cost.
+                Experience fashion like never before. Upload your photo, explore outfits, and see how they look on you in seconds. 
+                Realistic, fast, and built to make online shopping smarter.
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <Link to="/app" className="bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-8 py-4 rounded-lg text-lg font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors text-center">
