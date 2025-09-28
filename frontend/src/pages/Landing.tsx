@@ -84,44 +84,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="bg-white dark:bg-gray-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">How TryItOut.Ai works</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              No creative skills required - just a few clicks and you've got realistic stunning photos. 
-              Experience the magic of TryItOut.Ai's AI-powered virtual try-on today.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-white text-2xl font-bold">1</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Upload</h3>
-              <p className="text-gray-600 dark:text-gray-300">Upload your photo and the clothing image you want to try on</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-white text-2xl font-bold">2</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Transform</h3>
-              <p className="text-gray-600 dark:text-gray-300">Select your preferred background and let our AI work its magic</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-fuchsia-600 via-rose-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-white text-2xl font-bold">3</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Share</h3>
-              <p className="text-gray-600 dark:text-gray-300">Download and share your virtual try-on photos on social media</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Why TryItOut is Better Section */}
       <section className="bg-white dark:bg-gray-900 py-20">
