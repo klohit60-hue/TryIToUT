@@ -224,12 +224,47 @@ export default function Landing() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Near Perfect Resemblance</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Superior Technical Merging</h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Our AI delivers <span className="font-semibold text-blue-600 dark:text-blue-400">hyper-accurate details</span> on garments, 
-                    matching colors, textures, and look-and-feel with precision. 
-                    Unlike Botika where garment colors change in the target image, 
-                    we maintain <span className="font-bold text-blue-600 dark:text-blue-400">perfect color fidelity</span>.
+                    Our AI delivers <span className="font-semibold text-blue-600 dark:text-blue-400">seamless integration</span> with accurate body alignment, 
+                    realistic shadows, and natural posture. Perfect skin tone transitions and garment placement 
+                    create <span className="font-bold text-blue-600 dark:text-blue-400">convincing, consistent results</span> every time.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Perfect Color & Texture Preservation</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Unlike competitors where garment colors change and textures become inconsistent, 
+                    TryItOut.Ai preserves the <span className="font-semibold text-purple-600 dark:text-purple-400">exact look, feel, and color fidelity</span> 
+                    of your clothing with <span className="font-bold text-purple-600 dark:text-purple-400">hyper-accurate detail reproduction</span>.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Professional-Grade Accuracy</h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Our solution eliminates inconsistencies where clothing meets the body and environment. 
+                    No post-processing needed - we deliver <span className="font-semibold text-orange-600 dark:text-orange-400">production-ready results</span> 
+                    with natural lighting and realistic integration for <span className="font-bold text-orange-600 dark:text-orange-400">professional applications</span>.
                   </p>
                 </div>
               </div>
@@ -237,8 +272,10 @@ export default function Landing() {
               <div className="bg-gradient-to-r from-fuchsia-50 to-cyan-50 dark:from-fuchsia-900/20 dark:to-cyan-900/20 rounded-2xl p-6">
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">The Bottom Line</h4>
                 <p className="text-gray-600 dark:text-gray-300">
-                  TryItOut.Ai combines lightning-fast processing with unmatched accuracy, 
-                  giving you professional-quality virtual try-on results in seconds, not minutes.
+                  TryItOut.Ai delivers superior technical merging with seamless integration, perfect color preservation, 
+                  and professional-grade accuracy. While competitors may offer appealing lifestyle contexts, 
+                  our solution excels in <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">seamlessness, speed, and consistency</span> - 
+                  making it the clear choice for professional applications prioritizing accuracy and workflow efficiency.
                 </p>
               </div>
             </div>
