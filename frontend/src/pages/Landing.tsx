@@ -135,29 +135,44 @@ export default function Landing() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Comparison Images */}
-            <div className="space-y-8">
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">TryItOut.Ai Result</h3>
-                <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
-                  <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
-                    <img 
-                      src="/static/tryitout-result.png" 
-                      alt="TryItOut.Ai virtual try-on result" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
+            <div className="space-y-6">
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Side-by-Side Comparison</h3>
+                <p className="text-gray-600 dark:text-gray-300">See the difference in quality and speed</p>
               </div>
               
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Botika Result</h3>
-                <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
-                  <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
-                    <img 
-                      src="/static/botika-result.png" 
-                      alt="Botika virtual try-on result" 
-                      className="w-full h-full object-cover"
-                    />
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center">
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">TryItOut.Ai</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                    <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+                      <img 
+                        src="/static/tryitout-result.png" 
+                        alt="TryItOut.Ai virtual try-on result" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center justify-center">
+                    <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                    <span className="text-sm font-medium text-green-600 dark:text-green-400">20 seconds</span>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Botika</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                    <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+                      <img 
+                        src="/static/botika-result.png" 
+                        alt="Botika virtual try-on result" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center justify-center">
+                    <div className="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                    <span className="text-sm font-medium text-red-600 dark:text-red-400">8 minutes</span>
                   </div>
                 </div>
               </div>
