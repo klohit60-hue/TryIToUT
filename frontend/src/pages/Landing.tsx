@@ -158,7 +158,7 @@ export default function Landing() {
                 <p className="text-gray-600 dark:text-gray-300">See the difference in quality and speed</p>
               </div>
               
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
                 <div className="text-center">
                   <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">TryItOut.Ai</h4>
                   <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
@@ -173,6 +173,40 @@ export default function Landing() {
                   <div className="mt-3 flex items-center justify-center">
                     <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
                     <span className="text-sm font-medium text-green-600 dark:text-green-400">20 seconds</span>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">vs. Chat GPT</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                    <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+                      <img 
+                        src="/static/chatgpt-result.png" 
+                        alt="ChatGPT virtual try-on result" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center justify-center">
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                    <span className="text-sm font-medium text-yellow-600 dark:text-yellow-400">Variable</span>
+                  </div>
+                </div>
+                
+                <div className="text-center">
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">vs. Gemini</h4>
+                  <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-4">
+                    <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+                      <img 
+                        src="/static/gemini-result.png" 
+                        alt="Gemini virtual try-on result" 
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-3 flex items-center justify-center">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                    <span className="text-sm font-medium text-blue-600 dark:text-blue-400">Variable</span>
                   </div>
                 </div>
                 
