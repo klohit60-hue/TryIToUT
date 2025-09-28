@@ -226,7 +226,6 @@ export default function Landing() {
                 </div>
               </div>
             </div>
-          </div>
           
           {/* Comparison Points - Horizontal Below */}
           <div className="mt-20">
