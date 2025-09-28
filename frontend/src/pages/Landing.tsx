@@ -295,11 +295,11 @@ export default function Landing() {
           
           <div className="flex flex-col items-center space-y-8">
             {/* Sequential Try-On Flow */}
-            <div className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+            <div className="flex flex-col lg:flex-row items-center justify-center space-y-6 lg:space-y-0 lg:space-x-4 xl:space-x-6">
               {/* Face Image */}
               <div className="text-center">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <div className="aspect-square w-48 rounded-xl overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
+                  <div className="aspect-square w-32 sm:w-40 lg:w-36 xl:w-40 rounded-xl overflow-hidden">
                     <img 
                       src="/static/face01.png" 
                       alt="Face image for sequential try-on" 
@@ -307,20 +307,20 @@ export default function Landing() {
                     />
                   </div>
                 </div>
-                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Start with your photo</p>
+                <p className="mt-3 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Start with your photo</p>
               </div>
 
               {/* Arrow */}
               <div className="flex items-center">
-                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 lg:w-8 lg:h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
 
               {/* Shirt */}
               <div className="text-center">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
+                  <div className="aspect-[3/4] w-32 sm:w-40 lg:w-36 xl:w-40 rounded-xl overflow-hidden">
                     <img 
                       src="/static/shirt.png" 
                       alt="Shirt for try-on" 
@@ -328,20 +328,20 @@ export default function Landing() {
                     />
                   </div>
                 </div>
-                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Add shirt</p>
+                <p className="mt-3 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Add shirt</p>
               </div>
 
               {/* Arrow */}
               <div className="flex items-center">
-                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 lg:w-8 lg:h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
 
               {/* Step 01 */}
               <div className="text-center">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
+                  <div className="aspect-[3/4] w-32 sm:w-40 lg:w-36 xl:w-40 rounded-xl overflow-hidden">
                     <img 
                       src="/static/step01.png" 
                       alt="Step 1: First outfit try-on" 
@@ -349,20 +349,20 @@ export default function Landing() {
                     />
                   </div>
                 </div>
-                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Step 1: First outfit</p>
+                <p className="mt-3 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Step 1: First outfit</p>
               </div>
 
               {/* Arrow */}
               <div className="flex items-center">
-                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 lg:w-8 lg:h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
 
               {/* Jacket */}
               <div className="text-center">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
+                  <div className="aspect-[3/4] w-32 sm:w-40 lg:w-36 xl:w-40 rounded-xl overflow-hidden">
                     <img 
                       src="/static/jacket.jpeg" 
                       alt="Jacket for layering" 
@@ -370,20 +370,20 @@ export default function Landing() {
                     />
                   </div>
                 </div>
-                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Add jacket</p>
+                <p className="mt-3 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Add jacket</p>
               </div>
 
               {/* Arrow */}
               <div className="flex items-center">
-                <svg className="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 lg:w-8 lg:h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </div>
 
               {/* Step 02 */}
               <div className="text-center">
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg">
-                  <div className="aspect-[3/4] w-48 rounded-xl overflow-hidden">
+                <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
+                  <div className="aspect-[3/4] w-32 sm:w-40 lg:w-36 xl:w-40 rounded-xl overflow-hidden">
                     <img 
                       src="/static/step02.png" 
                       alt="Step 2: Second outfit try-on" 
@@ -391,7 +391,7 @@ export default function Landing() {
                     />
                   </div>
                 </div>
-                <p className="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Step 2: Mix & match</p>
+                <p className="mt-3 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">Step 2: Mix & match</p>
               </div>
             </div>
 
