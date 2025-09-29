@@ -92,16 +92,6 @@ def generate_tryon_image(
                     {"inline_data": {"mime_type": "image/png", "data": clothing_b64}},
                 ],
             }
-        ],
-        "safetySettings": [
-            {
-                "category": "HARM_CATEGORY_SEXUAL_CONTENT",
-                "threshold": "BLOCK_LOW"
-            },
-            {
-                "category": "HARM_CATEGORY_SEXUAL_MINORS",
-                "threshold": "BLOCK_LOW"
-            }
         ]
     }
 
