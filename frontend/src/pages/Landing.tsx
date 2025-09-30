@@ -85,21 +85,36 @@ export default function Landing() {
       </section>
 
       {/* How It Works - directly under Hero */}
-      <section className="bg-white dark:bg-gray-900 py-16">
+      <section className="relative py-20 bg-gradient-to-br from-pink-50 via-purple-50 to-cyan-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-2 items-center">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
             <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">How It Works</h2>
-              <ol className="mt-2 space-y-3 text-lg text-gray-700 dark:text-gray-300 list-decimal list-inside">
-                <li>Upload your photo and clothing image.</li>
-                <li>Select background.</li>
-                <li>Press Generate.</li>
-              </ol>
-              <div className="mt-6">
-                <Link to="/app" className="inline-flex items-center rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">Try Now</Link>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">How It Works</h2>
+              <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">Get a realistic try-on in three simple steps.</p>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
+                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">1</div>
+                  <p className="text-gray-800 dark:text-gray-200 font-medium">Upload your photo and clothing image.</p>
+                </div>
+                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
+                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">2</div>
+                  <p className="text-gray-800 dark:text-gray-200 font-medium">Select background.</p>
+                </div>
+                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
+                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">3</div>
+                  <p className="text-gray-800 dark:text-gray-200 font-medium">Press Generate.</p>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <Link to="/app" className="inline-flex items-center rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow">
+                  Try Now
+                </Link>
               </div>
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-50">
+
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/60 dark:border-gray-700 bg-white/70 dark:bg-gray-800/60 backdrop-blur">
               <video
                 src="/static/Screen Recording 2025-09-30 at 11.19.25 AM.mp4"
                 className="w-full h-auto"
@@ -107,7 +122,6 @@ export default function Landing() {
                 loop
                 autoPlay
                 playsInline
-                controls
                 preload="metadata"
               />
             </div>
