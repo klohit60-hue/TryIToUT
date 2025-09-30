@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { Info, HelpCircle, User, LogOut } from 'lucide-react'
+import { User, LogOut } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import ThemeToggle from './ThemeToggle'
 
