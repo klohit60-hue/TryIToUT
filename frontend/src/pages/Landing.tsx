@@ -116,7 +116,7 @@ export default function Landing() {
 
             <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/60 dark:border-gray-700 bg-white/70 dark:bg-gray-800/60 backdrop-blur">
               <video
-                src="/static/Screen Recording 2025-09-30 at 11.19.25 AM.mp4"
+                src="/static/how-it-works.mp4"
                 className="w-full h-auto"
                 muted
                 loop
