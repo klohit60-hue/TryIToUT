@@ -84,13 +84,13 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Why Tryitout - Features right after How It Works */}
-      <section className="bg-white dark:bg-gray-900 py-20">
+      {/* Why Tryitout - Features (below How It Works) */}
+      <section className="bg-white dark:bg-gray-900 py-20" id="why-tryitout">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Why Tryitout</h2>
           </div>
-
+          
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-200 dark:bg-gray-700">
@@ -119,7 +119,7 @@ export default function Landing() {
                 create <span className="font-bold text-blue-600 dark:text-blue-400">convincing, consistent results</span> every time.
               </p>
             </div>
-
+            
             <div className="text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-200 dark:bg-gray-700">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -133,7 +133,7 @@ export default function Landing() {
                 of your clothing with <span className="font-bold text-purple-600 dark:text-purple-400">hyper-accurate detail reproduction</span>.
               </p>
             </div>
-
+            
             <div className="text-center">
               <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-200 dark:bg-gray-700">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,8 +210,8 @@ export default function Landing() {
 
       
 
-      {/* Why TryItOut is Better Section */}
-      <section className="bg-white dark:bg-gray-900 py-20">
+      {/* Why TryItOut is Better Section (legacy) */}
+      <section className="bg-white dark:bg-gray-900 py-20 hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Why is TryItOut Better?</h2>
@@ -294,10 +294,10 @@ export default function Landing() {
                   <div className="mt-4 flex items-center justify-center">
                     <div className="w-4 h-4 bg-gray-400 rounded-full mr-3"></div>
                     <span className="text-lg font-medium text-gray-600 dark:text-gray-300">8 minutes</span>
-                  </div>
                 </div>
               </div>
             </div>
+          </div>
           
           {/* Comparison Points - Horizontal Below */}
           <div className="mt-20">
@@ -369,9 +369,9 @@ export default function Landing() {
                   our solution excels in <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">seamlessness, speed, and consistency</span> - 
                   making it the clear choice for professional applications prioritizing accuracy and workflow efficiency.
                 </p>
-              </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
 
