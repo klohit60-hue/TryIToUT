@@ -421,6 +421,9 @@ export default function TryOn() {
                   src="/static/Screen Recording 2025-09-30 at 11.19.25 AM.mp4"
                   className="w-full h-auto"
                   controls
+                  muted
+                  loop
+                  autoPlay
                   playsInline
                   preload="metadata"
                 />
