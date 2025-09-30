@@ -408,6 +408,25 @@ export default function TryOn() {
               </div>
             </div>
 
+            {/* How It Works */}
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
+              <h2 className="mb-4 text-lg font-semibold">How It Works</h2>
+              <ol className="space-y-3 text-sm text-gray-700 list-decimal list-inside">
+                <li>Upload your photo and clothing image.</li>
+                <li>Select a background.</li>
+                <li>Press Generate.</li>
+              </ol>
+              <div className="mt-4 overflow-hidden rounded-xl bg-gray-50 border border-gray-100">
+                <video
+                  src="/static/Screen Recording 2025-09-30 at 11.19.25 AM.mp4"
+                  className="w-full h-auto"
+                  controls
+                  playsInline
+                  preload="metadata"
+                />
+              </div>
+            </div>
+
             <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg">
               <h2 className="mb-3 text-lg font-medium">Recent Results</h2>
               {results.length === 0 ? (
