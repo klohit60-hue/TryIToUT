@@ -152,6 +152,8 @@ export default function Landing() {
 
       
 
+      
+
       {/* Why Tryitout - Features (below How It Works) */}
       <section className="bg-white dark:bg-gray-900 py-20" id="why-tryitout">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
