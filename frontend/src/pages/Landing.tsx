@@ -84,69 +84,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Side-by-Side Comparison */}
-      <section className="bg-white dark:bg-gray-900 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">Side-by-Side Comparison</h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300">See the difference in quality and speed</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-12 max-w-none">
-            <div className="text-center">
-              <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">TryItOut.Ai</h4>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
-                <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
-                  <img src="/static/tryitout-result.png" alt="TryItOut.Ai virtual try-on result" className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105" />
-                </div>
-              </div>
-              <div className="mt-4 flex items-center justify-center">
-                <div className="w-4 h-4 bg-gray-400 rounded-full mr-3"></div>
-                <span className="text-lg font-medium text-gray-600 dark:text-gray-300">20 seconds</span>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Chat GPT</h4>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
-                <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
-                  <img src="/static/chatgpt-result.png" alt="ChatGPT virtual try-on result" className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105" />
-                </div>
-              </div>
-              <div className="mt-4 flex items-center justify-center">
-                <div className="w-4 h-4 bg-gray-400 rounded-full mr-3"></div>
-                <span className="text-lg font-medium text-gray-600 dark:text-gray-300">4 minutes</span>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Gemini Nano Banana</h4>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
-                <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
-                  <img src="/static/gemini-result.png" alt="Gemini virtual try-on result" className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105" />
-                </div>
-              </div>
-              <div className="mt-4 flex items-center justify-center">
-                <div className="w-4 h-4 bg-gray-400 rounded-full mr-3"></div>
-                <span className="text-lg font-medium text-gray-600 dark:text-gray-300">2 minutes</span>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8">Botika</h4>
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 group">
-                <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg max-w-sm mx-auto">
-                  <img src="/static/botika-result.png" alt="Botika virtual try-on result" className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105" />
-                </div>
-              </div>
-              <div className="mt-4 flex items-center justify-center">
-                <div className="w-4 h-4 bg-gray-400 rounded-full mr-3"></div>
-                <span className="text-lg font-medium text-gray-600 dark:text-gray-300">8 minutes</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       
 
