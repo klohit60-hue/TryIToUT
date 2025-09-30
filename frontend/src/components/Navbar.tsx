@@ -37,14 +37,7 @@ export default function Navbar() {
           >
             App
           </NavLink>
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-gray-600 hover:text-gray-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-800 transition-all duration-200">
-            <Info className="h-4 w-4"/> 
-            About
-          </button>
-          <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-gray-600 hover:text-gray-900 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-800 transition-all duration-200">
-            <HelpCircle className="h-4 w-4"/> 
-            Help
-          </button>
+          
           
           <ThemeToggle />
           
