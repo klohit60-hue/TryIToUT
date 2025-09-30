@@ -84,6 +84,37 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* How It Works - directly under Hero */}
+      <section className="bg-white dark:bg-gray-900 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">How It Works</h2>
+              <ol className="mt-2 space-y-3 text-lg text-gray-700 dark:text-gray-300 list-decimal list-inside">
+                <li>Upload your photo and clothing image.</li>
+                <li>Select background.</li>
+                <li>Press Generate.</li>
+              </ol>
+              <div className="mt-6">
+                <Link to="/app" className="inline-flex items-center rounded-lg bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors">Try Now</Link>
+              </div>
+            </div>
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-700 bg-gray-50">
+              <video
+                src="/static/Screen Recording 2025-09-30 at 11.19.25 AM.mp4"
+                className="w-full h-auto"
+                muted
+                loop
+                autoPlay
+                playsInline
+                controls
+                preload="metadata"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       
 
       {/* Why TryItOut is Better Section */}
