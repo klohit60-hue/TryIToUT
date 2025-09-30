@@ -506,41 +506,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Customer Achievements Section */}
-      <section className="bg-gray-900 dark:bg-gray-800 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-6">With TryItOut.Ai's virtual try-on, our users achieve</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            <div className="text-center">
-              <div className="text-5xl font-bold text-white mb-2">-90%</div>
-              <div className="text-gray-300">Shopping uncertainty</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-5xl font-bold text-white mb-2">10x</div>
-              <div className="text-gray-300">Faster decision making</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-5xl font-bold text-white mb-2">+95%</div>
-              <div className="text-gray-300">Confidence in purchases</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-5xl font-bold text-white mb-2">+50%</div>
-              <div className="text-gray-300">Style experimentation</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-5xl font-bold text-white mb-2">+80%</div>
-              <div className="text-gray-300">Shopping satisfaction</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 dark:bg-gray-800 text-white py-16">
