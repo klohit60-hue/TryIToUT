@@ -92,6 +92,53 @@ export default function Landing() {
 
       
 
+      
+
+      {/* How It Works - directly under Hero */}
+      <section className="relative py-20 bg-gradient-to-br from-pink-50 via-purple-50 to-cyan-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-2 items-center">
+            <div>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">How It Works</h2>
+              <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">Get a realistic try-on in three simple steps.</p>
+
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
+                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">1</div>
+                  <p className="text-gray-800 dark:text-gray-200 font-medium">Upload your photo and clothing image.</p>
+                </div>
+                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
+                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">2</div>
+                  <p className="text-gray-800 dark:text-gray-200 font-medium">Select background.</p>
+                </div>
+                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
+                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">3</div>
+                  <p className="text-gray-800 dark:text-gray-200 font-medium">Press Generate.</p>
+                </div>
+              </div>
+
+              <div className="mt-8">
+                <Link to="/app" className="inline-flex items-center rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow">
+                  Try Now
+                </Link>
+              </div>
+            </div>
+
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/60 dark:border-gray-700 bg-white/70 dark:bg-gray-800/60 backdrop-blur">
+              <video
+                src="/static/how-it-works.mp4"
+                className="w-full h-auto"
+                muted
+                loop
+                autoPlay
+                playsInline
+                preload="metadata"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Tryitout - Features (below How It Works) */}
       <section className="bg-white dark:bg-gray-900 py-20" id="why-tryitout">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -168,144 +215,6 @@ export default function Landing() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* How It Works - directly under Hero */}
-      <section className="relative py-20 bg-gradient-to-br from-pink-50 via-purple-50 to-cyan-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">How It Works</h2>
-              <p className="mt-3 text-lg text-gray-700 dark:text-gray-300">Get a realistic try-on in three simple steps.</p>
-
-              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
-                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">1</div>
-                  <p className="text-gray-800 dark:text-gray-200 font-medium">Upload your photo and clothing image.</p>
-                </div>
-                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
-                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">2</div>
-                  <p className="text-gray-800 dark:text-gray-200 font-medium">Select background.</p>
-                </div>
-                <div className="rounded-2xl bg-white/80 dark:bg-gray-800/60 backdrop-blur border border-white/60 dark:border-gray-700 p-5 shadow-sm">
-                  <div className="h-10 w-10 rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center font-semibold mb-3">3</div>
-                  <p className="text-gray-800 dark:text-gray-200 font-medium">Press Generate.</p>
-                </div>
-              </div>
-
-              <div className="mt-8">
-                <Link to="/app" className="inline-flex items-center rounded-xl bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-6 py-3 font-medium hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors shadow">
-                  Try Now
-                </Link>
-              </div>
-            </div>
-
-            <div className="rounded-3xl overflow-hidden shadow-2xl border border-white/60 dark:border-gray-700 bg-white/70 dark:bg-gray-800/60 backdrop-blur">
-              <video
-                src="/static/how-it-works.mp4"
-                className="w-full h-auto"
-                muted
-                loop
-                autoPlay
-                playsInline
-                preload="metadata"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
-
-      {/* Why TryItOut is Better Section (legacy) */}
-      <section className="bg-white dark:bg-gray-900 py-20 hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Why is TryItOut Better?</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              See the difference between TryItOut.Ai and other virtual try-on solutions. 
-              Our technology delivers superior results in record time.
-            </p>
-          </div>
-          
-          
-          
-          
-          
-          {/* Comparison Points - Horizontal Below */}
-          <div className="mt-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-200 dark:bg-gray-700">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">24x Faster Generation</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  TryItOut.Ai generates results in under <span className="font-semibold text-green-600 dark:text-green-400">20 seconds</span>, 
-                  compared to Botika's <span className="font-semibold text-gray-600 dark:text-gray-400">8 minutes</span>. 
-                  That's <span className="font-bold text-green-600 dark:text-green-400">24 times faster</span> than the competition.
-                </p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-200 dark:bg-gray-700">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Superior Technical Merging</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Our AI delivers <span className="font-semibold text-blue-600 dark:text-blue-400">seamless integration</span> with accurate body alignment, 
-                  realistic shadows, and natural posture. Perfect skin tone transitions and garment placement 
-                  create <span className="font-bold text-blue-600 dark:text-blue-400">convincing, consistent results</span> every time.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-200 dark:bg-gray-700">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Perfect Color & Texture Preservation</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Unlike competitors where garment colors change and textures become inconsistent, 
-                  TryItOut.Ai preserves the <span className="font-semibold text-purple-600 dark:text-purple-400">exact look, feel, and color fidelity</span> 
-                  of your clothing with <span className="font-bold text-purple-600 dark:text-purple-400">hyper-accurate detail reproduction</span>.
-                </p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-200 dark:bg-gray-700">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Professional-Grade Accuracy</h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Our solution eliminates inconsistencies where clothing meets the body and environment. 
-                  No post-processing needed - we deliver <span className="font-semibold text-orange-600 dark:text-orange-400">production-ready results</span> 
-                  with natural lighting and realistic integration for <span className="font-bold text-orange-600 dark:text-orange-400">professional applications</span>.
-                </p>
-              </div>
-            </div>
-            
-            {/* The Bottom Line - Full Width */}
-            <div className="mt-12">
-              <div className="bg-gradient-to-r from-fuchsia-50 to-cyan-50 dark:from-fuchsia-900/20 dark:to-cyan-900/20 rounded-2xl p-8 text-center">
-                <h4 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">The Bottom Line</h4>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-                  TryItOut.Ai delivers superior technical merging with seamless integration, perfect color preservation, 
-                  and professional-grade accuracy. While competitors may offer appealing lifestyle contexts, 
-                  our solution excels in <span className="font-semibold text-fuchsia-600 dark:text-fuchsia-400">seamlessness, speed, and consistency</span> - 
-                  making it the clear choice for professional applications prioritizing accuracy and workflow efficiency.
-                </p>
-            </div>
-          </div>
-        </div>
         </div>
       </section>
 
